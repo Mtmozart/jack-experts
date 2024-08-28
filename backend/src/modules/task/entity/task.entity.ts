@@ -11,6 +11,7 @@ import {
 
 import { TaskStatus } from '../enum/taskStatus';
 import { User } from 'src/modules/user/entities/user.entity';
+import { EnumColors } from '../enum/colorEnum';
 
 @Entity()
 @Index(['title', 'status'])
@@ -26,6 +27,9 @@ export class Task {
 
   @Column()
   limitDate: Date;
+
+  @Column()
+  color: EnumColors;
 
   @Column({
     type: 'enum',

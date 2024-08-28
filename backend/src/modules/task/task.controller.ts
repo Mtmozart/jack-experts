@@ -14,10 +14,12 @@ import { AuthGuard } from '@nestjs/passport';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { RolesGuard } from '../auth/guards/roles.guard';
 import { Roles } from '../auth/decorators/roles.decorator';
-import { CreateTaskDto } from './dto/createTaskDto';
+import { CreateTaskDto } from './dto/request/createTaskDto';
 import { TaskService } from './task.service';
-import { UpdateTaskDto } from './dto/updateTaskDto';
-import { SearchDto } from './dto/requestSearchDto';
+import { UpdateTaskDto } from './dto/request/updateTaskDto';
+import { SearchDto } from './dto/request/requestSearchDto';
+import { ChangeColorTaskDto } from './dto/request/changeColorTaskDto';
+import DefaultResponseTaskDto from './dto/response/defaultResponseTaskDto';
 
 @ApiTags('task')
 @Controller('task')
@@ -28,7 +30,9 @@ export class TaskController {
   @Post()
   @Roles('client')
   async create(@Body() createTask: CreateTaskDto) {
-    return await this.taskService.create(createTask);
+    return new DefaultResponseTaskDto(
+      await this.taskService.create(createTask),
+    );
   }
   @Get(':id')
   @Roles('client')
@@ -38,7 +42,8 @@ export class TaskController {
   @Get('findAll/:userId')
   @Roles('client')
   async findAll(@Param('userId') id: string) {
-    return await this.taskService.findAllTasks(id);
+    const tasks = await this.taskService.findAllTasks(id);
+    return tasks.map((t) => new DefaultResponseTaskDto(t));
   }
 
   @Put(':id')
@@ -57,10 +62,19 @@ export class TaskController {
   async favorite(@Param('id') id: string) {
     return await this.taskService.favorite(id);
   }
+  @Patch('change-color/:id')
+  @Roles('client')
+  async changeColor(@Param('id') id: string, color: ChangeColorTaskDto) {
+    return await this.taskService.changeColor(id, color);
+  }
 
   @Get('search/:userId')
   @Roles('client')
   async search(@Param('userId') userId: string, @Query() query: SearchDto) {
-    return await this.taskService.search(userId, query);
+    const tasks = await this.taskService.search(userId, query);
+    if (tasks.length > 0) {
+      return tasks.map((t) => new DefaultResponseTaskDto(t));
+    }
+    return;
   }
 }

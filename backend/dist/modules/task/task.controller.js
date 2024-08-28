@@ -18,22 +18,25 @@ const passport_1 = require("@nestjs/passport");
 const swagger_1 = require("@nestjs/swagger");
 const roles_guard_1 = require("../auth/guards/roles.guard");
 const roles_decorator_1 = require("../auth/decorators/roles.decorator");
-const createTaskDto_1 = require("./dto/createTaskDto");
+const createTaskDto_1 = require("./dto/request/createTaskDto");
 const task_service_1 = require("./task.service");
-const updateTaskDto_1 = require("./dto/updateTaskDto");
-const requestSearchDto_1 = require("./dto/requestSearchDto");
+const updateTaskDto_1 = require("./dto/request/updateTaskDto");
+const requestSearchDto_1 = require("./dto/request/requestSearchDto");
+const changeColorTaskDto_1 = require("./dto/request/changeColorTaskDto");
+const defaultResponseTaskDto_1 = require("./dto/response/defaultResponseTaskDto");
 let TaskController = class TaskController {
     constructor(taskService) {
         this.taskService = taskService;
     }
     async create(createTask) {
-        return await this.taskService.create(createTask);
+        return new defaultResponseTaskDto_1.default(await this.taskService.create(createTask));
     }
     async findOne(id) {
         return await this.taskService.findOne(id);
     }
     async findAll(id) {
-        return await this.taskService.findAllTasks(id);
+        const tasks = await this.taskService.findAllTasks(id);
+        return tasks.map((t) => new defaultResponseTaskDto_1.default(t));
     }
     async update(id, updates) {
         return await this.taskService.update(id, updates);
@@ -43,6 +46,9 @@ let TaskController = class TaskController {
     }
     async favorite(id) {
         return await this.taskService.favorite(id);
+    }
+    async changeColor(id, color) {
+        return await this.taskService.changeColor(id, color);
     }
     async search(userId, query) {
         return await this.taskService.search(userId, query);
@@ -98,6 +104,14 @@ __decorate([
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", Promise)
 ], TaskController.prototype, "favorite", null);
+__decorate([
+    (0, common_1.Patch)('change-color/:id'),
+    (0, roles_decorator_1.Roles)('client'),
+    __param(0, (0, common_1.Param)('id')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, changeColorTaskDto_1.ChangeColorTaskDto]),
+    __metadata("design:returntype", Promise)
+], TaskController.prototype, "changeColor", null);
 __decorate([
     (0, common_1.Get)('search/:userId'),
     (0, roles_decorator_1.Roles)('client'),

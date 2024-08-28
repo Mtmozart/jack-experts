@@ -12,7 +12,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.SearchDto = void 0;
 const swagger_1 = require("@nestjs/swagger");
 const class_validator_1 = require("class-validator");
-const taskStatus_1 = require("../enum/taskStatus");
+const taskStatus_1 = require("../../enum/taskStatus");
 const class_transformer_1 = require("class-transformer");
 class SearchDto {
 }

@@ -1,6 +1,6 @@
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import { IsBoolean, IsEnum, IsIn, IsOptional, IsString } from 'class-validator';
-import { TaskStatus } from '../enum/taskStatus';
+import { TaskStatus } from '../../enum/taskStatus';
 import { Transform } from 'class-transformer';
 
 export class SearchDto {

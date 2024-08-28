@@ -96,13 +96,6 @@ let UserService = class UserService {
         if (updates.username && updates.username != user.username) {
             await this.findByUsernameValidation(updates.username);
         }
-        if (updates.address) {
-            const updatedAddress = await this.addressRepository.save({
-                ...user.address,
-                ...updates.address,
-            });
-            updates.address = updatedAddress;
-        }
         const updatedUser = await this.usersRepository.save({
             ...user,
             ...updates,
@@ -113,7 +106,6 @@ let UserService = class UserService {
         try {
             const user = await this.profile(req);
             await this.usersRepository.remove(user);
-            await this.addressRepository.remove(user.address);
         }
         catch (error) {
             throw error;

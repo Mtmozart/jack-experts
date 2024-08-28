@@ -13,6 +13,7 @@ exports.Task = void 0;
 const typeorm_1 = require("typeorm");
 const taskStatus_1 = require("../enum/taskStatus");
 const user_entity_1 = require("../../user/entities/user.entity");
+const colorEnum_1 = require("../enum/colorEnum");
 let Task = class Task {
 };
 exports.Task = Task;
@@ -32,6 +33,10 @@ __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", Date)
 ], Task.prototype, "limitDate", void 0);
+__decorate([
+    (0, typeorm_1.Column)(),
+    __metadata("design:type", String)
+], Task.prototype, "color", void 0);
 __decorate([
     (0, typeorm_1.Column)({
         type: 'enum',

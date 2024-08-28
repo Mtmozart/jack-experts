@@ -17,13 +17,13 @@ class EmailDto {
 exports.EmailDto = EmailDto;
 __decorate([
     (0, swagger_1.ApiProperty)(),
-    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.IsNotEmpty)({ message: 'O username é obrigatória para o login' }),
     __metadata("design:type", String)
 ], EmailDto.prototype, "username", void 0);
 __decorate([
     (0, swagger_1.ApiProperty)(),
-    (0, class_validator_1.IsString)(),
-    (0, class_validator_1.MinLength)(8),
+    (0, class_validator_1.IsNotEmpty)({ message: 'A senha é obrigatória para o login' }),
+    (0, class_validator_1.MinLength)(8, { message: 'A senha deve ter no mínimo oito caracteres' }),
     __metadata("design:type", String)
 ], EmailDto.prototype, "password", void 0);
 //# sourceMappingURL=loginDto.js.map

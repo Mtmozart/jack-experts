@@ -28,11 +28,7 @@ let TaskService = class TaskService {
             const user = await this.userService.findByID(createTask.userId);
             const task = new task_entity_1.Task();
             task.user = user;
-            task.title = createTask.title;
-            task.status = createTask.status;
-            task.limitDate = createTask.limitDate;
-            task.description = createTask.description;
-            return await this.taskRepository.save(task);
+            return await this.taskRepository.save({ ...task, ...createTask });
         }
         catch (error) {
             throw error;
@@ -84,6 +80,17 @@ let TaskService = class TaskService {
         try {
             const task = await this.findOne(id);
             task.favorite = !task.favorite;
+            await this.taskRepository.save(task);
+            return true;
+        }
+        catch (error) {
+            throw error;
+        }
+    }
+    async changeColor(id, color) {
+        try {
+            const task = await this.findOne(id);
+            task.color = color.color;
             await this.taskRepository.save(task);
             return true;
         }

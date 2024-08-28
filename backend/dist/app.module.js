@@ -18,6 +18,7 @@ const redisSource_1 = require("./database/redisSource");
 const bull_1 = require("@nestjs/bull");
 const user_module_1 = require("./modules/user/user.module");
 const auth_module_1 = require("./modules/auth/auth.module");
+const dashboard_module_1 = require("./modules/dashboard/dashboard.module");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
@@ -32,6 +33,7 @@ exports.AppModule = AppModule = __decorate([
             task_module_1.TaskModule,
             auth_module_1.AuthModule,
             mail_module_1.SendEmailModule,
+            dashboard_module_1.DashboardModule,
         ],
         controllers: [app_controller_1.AppController],
         providers: [app_service_1.AppService],

@@ -6,7 +6,7 @@ import {
   IsEnum,
   IsDateString,
 } from 'class-validator';
-import { TaskStatus } from '../enum/taskStatus';
+import { TaskStatus } from '../../enum/taskStatus';
 
 export class UpdateTaskDto {
   @ApiProperty({

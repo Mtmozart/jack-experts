@@ -13,5 +13,4 @@ export declare class User {
     tasks: Task[];
     createdAt: Date;
     updatedAt?: Date;
-    deletedAt?: Date;
 }

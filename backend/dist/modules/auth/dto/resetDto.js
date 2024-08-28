@@ -17,8 +17,8 @@ class ResetPasswordDto {
 exports.ResetPasswordDto = ResetPasswordDto;
 __decorate([
     (0, swagger_1.ApiProperty)(),
-    (0, class_validator_1.IsNotEmpty)(),
-    (0, class_validator_1.IsEmail)(),
+    (0, class_validator_1.IsNotEmpty)({ message: 'O campo do e-mail é obrigatório.' }),
+    (0, class_validator_1.IsEmail)({}, { message: 'Formato do e-mail inválido.' }),
     __metadata("design:type", String)
 ], ResetPasswordDto.prototype, "email", void 0);
 //# sourceMappingURL=resetDto.js.map

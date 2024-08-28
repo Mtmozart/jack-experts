@@ -2,17 +2,19 @@ import { ApiProperty } from '@nestjs/swagger';
 import {
   IsEnum,
   IsNotEmpty,
+  IsOptional,
   IsString,
   IsUUID,
   MaxLength,
 } from 'class-validator';
-import { TaskStatus } from '../enum/taskStatus';
+import { TaskStatus } from '../../enum/taskStatus';
+import { EnumColors } from '../../enum/colorEnum';
 
 export class CreateTaskDto {
   @ApiProperty({
     description: 'Usuário',
   })
-  @IsString({ message: 'O id deve ser uma string.' })
+  @IsString()
   @IsNotEmpty({ message: 'O id não pode estar vazio.' })
   @IsUUID('4', { message: 'ID deve ser um UUID válido' })
   userId: string;
@@ -20,7 +22,7 @@ export class CreateTaskDto {
   @ApiProperty({
     description: 'Título da tarefa',
   })
-  @IsString({ message: 'O título deve ser uma string.' })
+  @IsString()
   @IsNotEmpty({ message: 'O título não pode estar vazio.' })
   @MaxLength(100, { message: 'A o título não pode passar de 100 caracteres' })
   title: string;
@@ -28,7 +30,7 @@ export class CreateTaskDto {
   @ApiProperty({
     description: 'Descrição da tarefa',
   })
-  @IsString({ message: 'A descrição deve ser uma string.' })
+  @IsString()
   @IsNotEmpty({ message: 'A descrição não pode estar vazia.' })
   @MaxLength(250, { message: 'A descrição não pode passar de 250 caracteres' })
   description: string;
@@ -36,7 +38,7 @@ export class CreateTaskDto {
   @ApiProperty({
     description: 'Data limite para a tarefa',
   })
-  @IsString({ message: 'A data limite deve ser uma string.' })
+  @IsString()
   @IsNotEmpty({ message: 'A data limite não pode estar vazia.' })
   limitDate: Date;
 
@@ -51,4 +53,25 @@ export class CreateTaskDto {
   })
   @IsNotEmpty({ message: 'O status não pode estar vazio.' })
   status: TaskStatus;
+
+  @ApiProperty({
+    description: `
+    Cores disponíveis:
+    - **Red**: '#FF6F6F'
+    - **Green**: '#9CCC65'
+    - **Blue**: '#64B5F6'
+    - **Yellow**: '#FFF176'
+    - **Gray**: '#E0E0E0'
+    - **Lilac**: '#CE93D8'
+    
+    A cor deve ser um dos valores listados acima.
+  `,
+    enum: EnumColors,
+    default: EnumColors.Yellow,
+  })
+  @IsEnum(EnumColors, {
+    message: 'A cor deve ser um tipo válido.',
+  })
+  @IsOptional()
+  color: EnumColors;
 }

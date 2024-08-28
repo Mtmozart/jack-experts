@@ -1,11 +1,12 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
-import { CreateTaskDto } from './dto/createTaskDto';
+import { CreateTaskDto } from './dto/request/createTaskDto';
 import { Task } from './entity/task.entity';
 import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 import { UserService } from '../user/user.service';
-import { UpdateTaskDto } from './dto/updateTaskDto';
-import { SearchDto } from './dto/requestSearchDto';
+import { UpdateTaskDto } from './dto/request/updateTaskDto';
+import { SearchDto } from './dto/request/requestSearchDto';
+import { ChangeColorTaskDto } from './dto/request/changeColorTaskDto';
 
 @Injectable()
 export class TaskService {
@@ -21,12 +22,8 @@ export class TaskService {
       const task = new Task();
 
       task.user = user;
-      task.title = createTask.title;
-      task.status = createTask.status;
-      task.limitDate = createTask.limitDate;
-      task.description = createTask.description;
 
-      return await this.taskRepository.save(task);
+      return await this.taskRepository.save({ ...task, ...createTask });
     } catch (error) {
       throw error;
     }
@@ -77,6 +74,17 @@ export class TaskService {
     try {
       const task = await this.findOne(id);
       task.favorite = !task.favorite;
+      await this.taskRepository.save(task);
+      return true;
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  async changeColor(id: string, color: ChangeColorTaskDto): Promise<boolean> {
+    try {
+      const task = await this.findOne(id);
+      task.color = color.color;
       await this.taskRepository.save(task);
       return true;
     } catch (error) {

@@ -9,7 +9,7 @@ const typeorm_1 = require("typeorm");
 const dataSourceConfig = () => {
     return {
         type: 'postgres',
-        ...(config_1.EnvConfig.ENV.TZ === 'production'
+        ...(config_1.EnvConfig.ENV === 'production'
             ? {
                 url: config_1.EnvConfig.database.URL,
                 synchronize: false,

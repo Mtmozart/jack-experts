@@ -14,5 +14,5 @@ export declare class TaskController {
     delete(id: string): Promise<void>;
     favorite(id: string): Promise<boolean>;
     changeColor(id: string, color: ChangeColorTaskDto): Promise<boolean>;
-    search(userId: string, query: SearchDto): Promise<import("./entity/task.entity").Task[]>;
+    search(userId: string, query: SearchDto): Promise<DefaultResponseTaskDto[]>;
 }

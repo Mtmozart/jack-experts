@@ -51,7 +51,11 @@ let TaskController = class TaskController {
         return await this.taskService.changeColor(id, color);
     }
     async search(userId, query) {
-        return await this.taskService.search(userId, query);
+        const tasks = await this.taskService.search(userId, query);
+        if (tasks.length > 0) {
+            return tasks.map((t) => new defaultResponseTaskDto_1.default(t));
+        }
+        return;
     }
 };
 exports.TaskController = TaskController;

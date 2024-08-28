@@ -7,7 +7,7 @@ export declare const EnvConfig: {
         NAME_DB: string;
         URL: string;
     };
-    ENV: NodeJS.ProcessEnv;
+    ENV: string;
     secret: string;
     EMAIL: {
         HOST_EMAIL: string;

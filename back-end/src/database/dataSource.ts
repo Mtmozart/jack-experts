@@ -7,7 +7,7 @@ import { DataSource, DataSourceOptions } from 'typeorm';
 export const dataSourceConfig = (): DataSourceOptions => {
   return {
     type: 'postgres',
-    ...(EnvConfig.ENV.TZ === 'production'
+    ...(EnvConfig.ENV === 'production'
       ? {
           url: EnvConfig.database.URL,
           synchronize: false,
@@ -23,9 +23,6 @@ export const dataSourceConfig = (): DataSourceOptions => {
           database: EnvConfig.database.NAME_DB,
           synchronize: false,
           ssl: false,
-          /*ssl: {
-            rejectUnauthorized: true, 
-          },*/
         }),
     entities: [User, Address, Task],
   };

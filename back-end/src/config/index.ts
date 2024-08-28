@@ -10,7 +10,7 @@ export const EnvConfig = {
     NAME_DB: process.env.NAME_DB,
     URL: process.env.URL_DATABASE,
   },
-  ENV: process.env,
+  ENV: process.env.NODE_ENV,
   secret: process.env.JWT_SECRET,
   EMAIL: {
     HOST_EMAIL: process.env.HOST_EMAIL,

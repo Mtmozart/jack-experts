@@ -27,7 +27,8 @@
 .nav__container__logo a {
   font-size: $font-size-large;
   color: $white;
-  font-weight: bold;
+  text-decoration: none;
+  font-weight: 700;
 }
 
 .nav__container__list {
@@ -42,7 +43,7 @@
 
 .nav__container__list a {
   text-decoration: none;
-  color: $text-color;
+  color: $white;
   font-size: $font-size-medium;
 }
 
@@ -65,12 +66,12 @@
     top: 0vh;
     right: 0;
     width: 35vw;
-    background-color: $text-color;
+    background-color: $secondary-color;
     height: 92vh;
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
-    padding-top: 10px;
+    padding-top: 40px;
     transform: translateX(100%);
     opacity: 0;
     transition:
@@ -85,10 +86,13 @@
 
   .nav__container__list li {
     width: 100%;
+    font-size: $font-size-medium;
+    font-weight: 400;
+    line-height: $spacing-small;
   }
 
   .nav__container__list a {
-    color: $white;
+    color: $primary-color;
   }
 
   .nav__container__toggle {

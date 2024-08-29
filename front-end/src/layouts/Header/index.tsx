@@ -15,7 +15,7 @@ export function Header() {
     <header className={styles.header__container}>
       <nav className={styles.nav__container}>
         <section className={styles.nav__container__logo}>
-          <a href="/tasks">To do Tasks</a>
+          <Link to="/">To do Tasks</Link>
         </section>
         <section className={styles.nav__container__toggle} onClick={toggleIcon}>
           {isVisible ? <FaTimes /> : <FaAlignJustify />}

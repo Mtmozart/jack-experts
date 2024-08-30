@@ -33,7 +33,7 @@ export function Header() {
           <li>
             <Link to="/tasks">Tasks</Link>
           </li>
-          <li>
+          <li className={styles.login__button}>
             <Link to="/login">Login</Link>
           </li>
         </ul>

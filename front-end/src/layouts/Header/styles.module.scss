@@ -56,6 +56,23 @@
 .nav__container__toggle {
   display: none;
 }
+.login__button {
+  padding: 10px 20px;
+  border-radius: 25px;
+  background-color: $background-color;
+
+  a {
+    color: $primary-color;
+  }
+
+  &:hover {
+    background-color: $accent-color;
+
+    a {
+      color: $background-color;
+    }
+  }
+}
 
 /* Consultas de mídia para tablets */
 @media (max-width: $tablet) {

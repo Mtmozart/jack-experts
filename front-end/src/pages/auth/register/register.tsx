@@ -1,7 +1,4 @@
-import { Dispatch, SetStateAction, useState } from 'react';
-import { PersonalInfosStep } from './step/PersonalInfos/PersonalInfos';
 import styles from './styles.module.scss';
-import { PersonalInfosInterface } from './step/PersonalInfos/utils/personalInfos.zod.interface';
 import { FieldError, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { userSchema } from '../../../validators';
@@ -9,6 +6,7 @@ import { IRegister } from '../../../interfaces/auth';
 import { FormFieldConstructor } from '../../../components/common/Form/form';
 import { SelectInput } from '../../../components/common/Select/SelectInput';
 import { States } from './step/PersonalInfos/utils/States';
+import { PersonalInfosInterface } from './step/PersonalInfos/utils/personalInfos.zod.interface';
 
 interface RegisterComponentsProps {}
 

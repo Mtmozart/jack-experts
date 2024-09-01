@@ -1,6 +1,5 @@
-<<<<<<< HEAD
-# Created by https://www.toptal.com/developers/gitignore/api/react,nextjs
-# Edit at https://www.toptal.com/developers/gitignore?templates=react,nextjs
+# Created by https://www.toptal.com/developers/gitignore/api/react,nextjs,node
+# Edit at https://www.toptal.com/developers/gitignore?templates=react,nextjs,node
 
 ### NextJS ###
 # dependencies
@@ -62,10 +61,6 @@ sketch
 .pnp
 
 front-end/node_modules/.cache/
-# End of https://www.toptal.com/developers/gitignore/api/react,nextjs
-=======
-# Created by https://www.toptal.com/developers/gitignore/api/node
-# Edit at https://www.toptal.com/developers/gitignore?templates=node
 
 ### Node ###
 # Logs
@@ -202,10 +197,5 @@ dist
 # Serverless Webpack directories
 .webpack/
 
-# Optional stylelint cache
-
 # SvelteKit build / generate output
 .svelte-kit
-
-# End of https://www.toptal.com/developers/gitignore/api/node
->>>>>>> 5a5632497bd024695ab4d0c2b27f7ee350292dea

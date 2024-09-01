@@ -18,8 +18,13 @@
     border: 2px solid $primary-color;
   }
 }
+<<<<<<< HEAD
 @media (max-width: $mobile) {
   .button__card {
+=======
+@media(max-width: $mobile){
+  .button__card{
+>>>>>>> 5a5632497bd024695ab4d0c2b27f7ee350292dea
     width: 100%;
   }
 }

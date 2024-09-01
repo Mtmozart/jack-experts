@@ -64,6 +64,7 @@
 @media (max-width: $mobile) {
   .main__home__container {
     height: 850px;
+<<<<<<< HEAD
   }
   .main__home__content {
     max-width: 850px;
@@ -73,6 +74,19 @@
 .about__container {
   width: 100%;
   height: auto;
+=======
+    
+  }
+  .main__home__content {
+    max-width:  850px;
+  }
+}
+
+
+.about__container {
+  width: 100%;
+  height: auto; 
+>>>>>>> 5a5632497bd024695ab4d0c2b27f7ee350292dea
   display: flex;
   flex-direction: row;
   justify-content: space-around;
@@ -107,7 +121,11 @@
 
 .about__container__content img {
   width: 90%;
+<<<<<<< HEAD
   height: auto;
+=======
+  height: auto; 
+>>>>>>> 5a5632497bd024695ab4d0c2b27f7ee350292dea
   border-radius: 20px;
 }
 
@@ -115,7 +133,11 @@
   padding: 20px;
   margin: 0;
   width: 100%;
+<<<<<<< HEAD
   height: auto;
+=======
+  height: auto; 
+>>>>>>> 5a5632497bd024695ab4d0c2b27f7ee350292dea
   box-sizing: border-box;
   display: flex;
   align-items: center;
@@ -127,7 +149,11 @@
 .carrousel__container h3 {
   font-size: $font-size-large;
   padding-top: 30px;
+<<<<<<< HEAD
   font-weight: 700;
+=======
+  font-weight: 700; 
+>>>>>>> 5a5632497bd024695ab4d0c2b27f7ee350292dea
 }
 
 @media (max-width: $tablet) {
@@ -159,4 +185,8 @@
     width: 100%;
     font-size: $font-size-small;
   }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 5a5632497bd024695ab4d0c2b27f7ee350292dea

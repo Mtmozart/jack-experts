@@ -34,7 +34,11 @@ export function Header() {
             <Link to="/tasks">Tasks</Link>
           </li>
           <li className={styles.login__button}>
+<<<<<<< HEAD
             <Link to="/login">Cadastro</Link>
+=======
+            <Link to="/login">Login</Link>
+>>>>>>> 5a5632497bd024695ab4d0c2b27f7ee350292dea
           </li>
         </ul>
       </nav>

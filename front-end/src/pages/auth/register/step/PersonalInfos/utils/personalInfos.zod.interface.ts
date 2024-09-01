@@ -8,12 +8,13 @@ export type PersonalInfosInterface = {
   senha: string;
   confirmação: string;
   logradouro: string;
-  número: number;
+  número: string;
   bairro: string;
-  localidade: string;
+  município: string;
   estado: StatesEnum;
+  país: string;
   cep: string;
-  complemento: string;
+  complemento?: string;
 };
 
 export const PersonalInfosSchema = z
@@ -39,8 +40,11 @@ export const PersonalInfosSchema = z
       .string()
       .max(500, { message: 'caracteres demais para este campo' })
       .min(1, { message: 'Bairro vazio' }),
-    localidade: z.string().min(1, { message: 'Bairro vazio' }),
+    município: z
+      .string()
+      .min(1, { message: 'O campo do município está vazio' }),
     estado: z.enum(States, { message: 'Valor inválido' }),
+    país: z.string().min(1, { message: 'O campo do município está vazio' }),
     CEP: z
       .string()
       .min(1, { message: 'CEP vazio' })

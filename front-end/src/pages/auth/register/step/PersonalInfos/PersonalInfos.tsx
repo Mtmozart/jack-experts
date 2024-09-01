@@ -29,7 +29,7 @@ export function PersonalInfosStep({ form }: PersonalInfosProps) {
   } = useForm<PersonalInfosInterface>({
     resolver: zodResolver(userSchema),
     mode: 'onTouched',
-    defaultValues: form.values
+    defaultValues: form.values,
   });
 
   async function onSubmit(data: PersonalInfosInterface) {
@@ -125,10 +125,10 @@ export function PersonalInfosStep({ form }: PersonalInfosProps) {
       />
 
       <FormField
-        name="localidade"
+        name="município"
         register={register}
         setError={setError}
-        error={errors?.localidade}
+        error={errors?.município}
         inputProps={{
           placeholder: 'Localidade',
           type: 'text',
@@ -143,7 +143,16 @@ export function PersonalInfosStep({ form }: PersonalInfosProps) {
         className="col-span-1"
         error={errors?.estado as FieldError | undefined}
       />
-
+      <FormField
+        name="país"
+        register={register}
+        setError={setError}
+        error={errors?.país}
+        inputProps={{
+          placeholder: 'Localidade',
+          type: 'text',
+        }}
+      />
       <FormField
         name="cep"
         register={register}

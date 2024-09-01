@@ -1,23 +1,178 @@
-import { useState } from 'react';
+import { Dispatch, SetStateAction, useState } from 'react';
 import { PersonalInfosStep } from './step/PersonalInfos/PersonalInfos';
 import styles from './styles.module.scss';
+import { PersonalInfosInterface } from './step/PersonalInfos/utils/personalInfos.zod.interface';
+import { FieldError, useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { userSchema } from '../../../validators';
+import { IRegister } from '../../../interfaces/auth';
+import { FormFieldConstructor } from '../../../components/common/Form/form';
+import { SelectInput } from '../../../components/common/Select/SelectInput';
+import { States } from './step/PersonalInfos/utils/States';
 
-export default function RegisterScreen() {
-  const [currentStep, setCurrentStep] = useState(1);
-  const steps = [PersonalInfosStep];
+interface RegisterComponentsProps {}
 
+export default function RegisterScreen(props: RegisterComponentsProps) {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    setError,
+  } = useForm<IRegister>({
+    resolver: zodResolver(userSchema),
+    mode: 'onBlur',
+  });
+  console.log(errors);
+  async function onSubmit(data: PersonalInfosInterface) {
+    console.log('onSubmit chamada');
+    console.log('Dados do formulário:', data);
+  }
+
+  const FormField = FormFieldConstructor<IRegister>();
 
   return (
     <section className={styles.form__container}>
       <div className={styles.form__container__center}>
         <h1>Cadastre-se</h1>
-        {steps.map((StepComponent, index) => (
-          <StepComponent
-            key={index}
-            steps={{ current: currentStep, setCurrent: setCurrentStep }}
-            form={{ values: {}, setValues: () => {} }}
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <FormField
+            name="nome"
+            register={register}
+            setError={setError}
+            error={errors?.nome}
+            inputProps={{
+              type: 'text',
+              placeholder: 'Nome completo',
+            }}
           />
-        ))}
+          <FormField
+            name="email"
+            register={register}
+            setError={setError}
+            error={errors?.email}
+            inputProps={{
+              type: 'email',
+              placeholder: 'Seu Email',
+            }}
+          />
+          <FormField
+            name="username"
+            register={register}
+            setError={setError}
+            error={errors?.username}
+            inputProps={{
+              type: 'text',
+              placeholder: 'Username',
+            }}
+          />
+          <FormField
+            name="senha"
+            register={register}
+            setError={setError}
+            error={errors?.senha}
+            inputProps={{
+              type: 'password',
+              placeholder: 'Sua senha',
+            }}
+          />
+          <FormField
+            name="confirmação"
+            register={register}
+            setError={setError}
+            error={errors?.confirmação}
+            inputProps={{
+              placeholder: 'Confirme sua senha',
+              type: 'password',
+            }}
+          />
+          <FormField
+            name="logradouro"
+            register={register}
+            setError={setError}
+            error={errors?.logradouro}
+            inputProps={{
+              placeholder: 'Logradouro',
+              type: 'text',
+            }}
+          />
+
+          <FormField
+            name="número"
+            register={register}
+            setError={setError}
+            error={errors?.número}
+            inputProps={{
+              placeholder: 'Número',
+              type: 'text',
+            }}
+          />
+
+          <FormField
+            name="bairro"
+            register={register}
+            setError={setError}
+            error={errors?.bairro}
+            inputProps={{
+              placeholder: 'Bairro',
+              type: 'text',
+            }}
+          />
+
+          <FormField
+            name="município"
+            register={register}
+            setError={setError}
+            error={errors?.município}
+            inputProps={{
+              placeholder: 'Município',
+              type: 'text',
+            }}
+          />
+
+          <SelectInput
+            register={register}
+            setError={setError}
+            name="estado"
+            items={States}
+            error={errors?.estado as FieldError | undefined}
+          />
+
+          <FormField
+            name="país"
+            register={register}
+            setError={setError}
+            error={errors?.país}
+            inputProps={{
+              placeholder: 'Localidade',
+              type: 'text',
+            }}
+          />
+
+          <FormField
+            name="cep"
+            register={register}
+            setError={setError}
+            error={errors?.cep}
+            inputProps={{
+              placeholder: 'CEP',
+              type: 'text',
+            }}
+          />
+
+          <FormField
+            name="complemento"
+            register={register}
+            setError={setError}
+            error={errors?.complemento}
+            inputProps={{
+              placeholder: 'Complemento',
+              type: 'text',
+            }}
+          />
+          <button type="submit" className={styles.form__container__button}>
+            Cadastrar
+          </button>
+        </form>
       </div>
     </section>
   );

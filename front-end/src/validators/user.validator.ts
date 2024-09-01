@@ -25,7 +25,7 @@ export const userSchema = z.object({
   país: z
     .string({ required_error: 'O campo País é obrigatório.' })
     .min(1, 'O campo País é obrigatório.'),
-  cidade: z
+  município: z
     .string({ required_error: 'O campo Município é obrigatório.' })
     .min(1, 'O campo Município é obrigatório.'),
   bairro: z

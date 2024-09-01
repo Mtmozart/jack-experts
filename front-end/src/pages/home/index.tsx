@@ -13,7 +13,11 @@ export function HomeScreen() {
             obcaecati ratione quam asperiores quis consequatur aspernatur id
             distinctio blanditiis. Quasi!
           </p>
-          <Button text={'Saiba mais'} redirectTo="#" onClick={undefined} />
+          <Button
+            text={'Cadastra-se'}
+            redirectTo="/register"
+            onClick={undefined}
+          />
         </div>
       </div>
 
@@ -22,9 +26,10 @@ export function HomeScreen() {
           <div className={styles.about__container__content__text}>
             <h2>Algo importante</h2>
             <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni blanditiis quas optio
-              ad accusamus, cupiditate itaque ex, dignissimos vero sapiente suscipit magnam incidunt
-              accusantium libero quia nam inventore iste excepturi.
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni
+              blanditiis quas optio ad accusamus, cupiditate itaque ex,
+              dignissimos vero sapiente suscipit magnam incidunt accusantium
+              libero quia nam inventore iste excepturi.
             </p>
             <Button text={'Saiba mais'} />
           </div>

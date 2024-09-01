@@ -1,0 +1,38 @@
+@import '../../../styles/variables.scss';
+.form__control {
+  margin-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+.label {
+  margin-bottom: 0.2rem;
+  font-weight: bold;
+  color: $primary-color;
+}
+
+.input {
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  font-size: $font-size-medium;
+
+  &:focus {
+    border-color: $primary-color;
+    outline: none;
+  }
+}
+
+.input__bordered {
+  border-color: $accent-color;
+}
+
+.input__error {
+  border-color: $red;
+}
+
+.text__error {
+  color: $red;
+  font-size: 0.875rem;
+  margin-top: 0.5rem;
+}

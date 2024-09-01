@@ -1,0 +1,43 @@
+@import '../../../styles/variables.scss';
+
+.formControl {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+}
+
+.label {
+  margin-bottom: 3px;
+}
+
+.labelText {
+  font-weight: bold;
+  color: $primary-color;
+}
+
+.select {
+  padding: 10px;
+  border-radius: 25px;
+  border: 1px solid $background-color;
+  font-size: 1rem;
+  background-color: $white;
+  transition: border-color 0.2s ease;
+}
+
+.selectBordered {
+  border-color: $accent-color;
+}
+
+.inputError {
+  border-color: $red;
+}
+
+.textError {
+  color: $red;
+  font-size: 0.75rem;
+  padding-top: 0.25rem;
+}
+
+.select option[disabled] {
+  color: #999;
+}

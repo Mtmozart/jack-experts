@@ -34,7 +34,7 @@ export function Header() {
             <Link to="/tasks">Tasks</Link>
           </li>
           <li className={styles.login__button}>
-            <Link to="/login">Login</Link>
+            <Link to="/login">Cadastro</Link>
           </li>
         </ul>
       </nav>

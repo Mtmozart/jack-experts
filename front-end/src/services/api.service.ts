@@ -39,7 +39,7 @@ export async function request(
     url: isUrl(url) ? url : `${api}/${url}`,
     method: method,
     headers: updatedHeader,
-    data: body || null,
+    data: body !== null ? body : undefined,
     ...options,
   };
 
@@ -105,7 +105,7 @@ export async function patch(
   return await request(buildUrl(url, params), 'PATCH', data, headers, options);
 }
 
-export async function remove(
+export async function del(
   url: string,
   { data, params, headers, options }: IMethod = {},
 ) {

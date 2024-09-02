@@ -105,7 +105,7 @@ export async function patch(
   return await request(buildUrl(url, params), 'PATCH', data, headers, options);
 }
 
-export async function del(
+export async function remove(
   url: string,
   { data, params, headers, options }: IMethod = {},
 ) {

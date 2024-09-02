@@ -1,5 +1,4 @@
 export interface IAddress {
-  id: string;
   cep: string;
   state: string;
   country: string;

@@ -23,7 +23,7 @@ export default function LoginScreen(props: LoginComponentsProps) {
     mode: 'onBlur',
   });
   const navigate = useNavigate();
-  const { loginUser } = useAuthProvider();
+  const { loginUser, currentUser } = useAuthProvider();
   const FormField = FormFieldConstructor<ILogin>();
 
   async function onSubmit(data: ILogin) {
@@ -46,40 +46,48 @@ export default function LoginScreen(props: LoginComponentsProps) {
   return (
     <section className={styles.login__container}>
       <div className={styles.login__container__center}>
-        <h1>Login</h1>
-        <form onSubmit={handleSubmit(onSubmit)}>
-          <FormField
-            name="username"
-            register={register}
-            setError={setError}
-            error={errors?.username}
-            inputProps={{
-              type: 'text',
-              placeholder: 'Seu Nome de Usuário',
-            }}
-          />
-          <FormField
-            name="senha"
-            register={register}
-            setError={setError}
-            error={errors?.senha}
-            inputProps={{
-              type: 'password',
-              placeholder: 'Sua Senha',
-            }}
-          />
-          <button className={styles.login__container__button} type="submit">
-            Entrar
-          </button>
-        </form>
-        <div className={styles.login__auther__routes}>
-          <div>
-            Não tem uma conta ? <Link to={'/register'}>Cadastre-se!</Link>
-          </div>
-          <div>
-            Esqueceu sua senha ? <Link to={'/'}>Clique aqui!</Link>
-          </div>
-        </div>
+        {currentUser ? (
+          <>
+            <h1>Sem permissão</h1>
+          </>
+        ) : (
+          <>
+            <h1>Login</h1>
+            <form onSubmit={handleSubmit(onSubmit)}>
+              <FormField
+                name="username"
+                register={register}
+                setError={setError}
+                error={errors?.username}
+                inputProps={{
+                  type: 'text',
+                  placeholder: 'Seu Nome de Usuário',
+                }}
+              />
+              <FormField
+                name="senha"
+                register={register}
+                setError={setError}
+                error={errors?.senha}
+                inputProps={{
+                  type: 'password',
+                  placeholder: 'Sua Senha',
+                }}
+              />
+              <button className={styles.login__container__button} type="submit">
+                Entrar
+              </button>
+            </form>
+            <div className={styles.login__auther__routes}>
+              <div>
+                Não tem uma conta ? <Link to={'/register'}>Cadastre-se!</Link>
+              </div>
+              <div>
+                Esqueceu sua senha ? <Link to={'/'}>Clique aqui!</Link>
+              </div>
+            </div>
+          </>
+        )}
       </div>
     </section>
   );

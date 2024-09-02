@@ -8,7 +8,6 @@ import { useAuthProvider } from '../../context/Auth';
 export function Header() {
   const [isVisible, setIsVisible] = useState(false);
   const { currentUser, logout } = useAuthProvider();
-
   const toggleIcon = () => {
     setIsVisible(!isVisible);
   };

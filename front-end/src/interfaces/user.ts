@@ -16,7 +16,14 @@ export interface IUser {
   username: string;
   email: string;
   password: string;
-  address: IAddress;
+  cep: string;
+  state: string;
+  country: string;
+  city: string;
+  neighborhood: string;
+  street: string;
+  number: string;
+  complement?: string;
   roles: string[];
   typeUser: typeUser;
 }

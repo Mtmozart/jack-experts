@@ -8,6 +8,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { conversionToLoginDataApi } from '../../../utils/dataConversion';
 import { login } from '../../../services/auth.service';
 import { setTokenToLocalStorage } from '../../../services/localStorage.service';
+import { useAuthProvider } from '../../../context/Auth';
 
 interface LoginComponentsProps {}
 
@@ -21,7 +22,8 @@ export default function LoginScreen(props: LoginComponentsProps) {
     resolver: zodResolver(LoginSchema),
     mode: 'onBlur',
   });
-  const navigate = useNavigate()
+  const navigate = useNavigate();
+  const { loginUser } = useAuthProvider();
   const FormField = FormFieldConstructor<ILogin>();
 
   async function onSubmit(data: ILogin) {
@@ -29,16 +31,16 @@ export default function LoginScreen(props: LoginComponentsProps) {
       const dataApi = conversionToLoginDataApi(data);
       const response = await login(dataApi);
       const token = response.token;
-      
+
       if (token) {
         setTokenToLocalStorage('token', token);
-        navigate('/')
+        loginUser();
+        navigate('/');
       } else {
         console.error('Token não encontrado na resposta da API');
       }
     } catch (error) {
       console.error('Erro ao fazer login:', error);
-      
     }
   }
   return (
@@ -52,8 +54,8 @@ export default function LoginScreen(props: LoginComponentsProps) {
             setError={setError}
             error={errors?.username}
             inputProps={{
-              type: "text",
-              placeholder: "Seu Nome de Usuário",
+              type: 'text',
+              placeholder: 'Seu Nome de Usuário',
             }}
           />
           <FormField
@@ -62,19 +64,23 @@ export default function LoginScreen(props: LoginComponentsProps) {
             setError={setError}
             error={errors?.senha}
             inputProps={{
-              type: "password",
-              placeholder: "Sua Senha",
+              type: 'password',
+              placeholder: 'Sua Senha',
             }}
           />
-          <button className={styles.login__container__button} type="submit">Entrar</button>
+          <button className={styles.login__container__button} type="submit">
+            Entrar
+          </button>
         </form>
         <div className={styles.login__auther__routes}>
-        <div>Não tem uma conta ? <Link to={'/register'}>Cadastre-se!</Link></div>
-        <div>Esqueceu sua senha ? <Link to={'/'}>Clique aqui!</Link></div>
+          <div>
+            Não tem uma conta ? <Link to={'/register'}>Cadastre-se!</Link>
+          </div>
+          <div>
+            Esqueceu sua senha ? <Link to={'/'}>Clique aqui!</Link>
+          </div>
         </div>
       </div>
     </section>
   );
 }
-
-

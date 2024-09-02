@@ -3,5 +3,5 @@ export function setTokenToLocalStorage(name: string, value: string) {
 }
 
 export function getTokenToLocalStorage() {
-  localStorage.getItem('token');
+  return localStorage.getItem('token');
 }

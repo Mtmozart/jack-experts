@@ -23,11 +23,9 @@ export function conversionToCreateDataApi(
   };
 }
 
-export function conversionToLoginDataApi(
-  data: ILogin,
-): ILoginApi {
-  return {    
+export function conversionToLoginDataApi(data: ILogin): ILoginApi {
+  return {
     username: data.username,
-    password: data.senha    
+    password: data.senha,
   };
 }

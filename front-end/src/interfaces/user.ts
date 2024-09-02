@@ -17,7 +17,6 @@ export interface IUser {
   email: string;
   password: string;
   address: IAddress;
-  isCoordinator: boolean;
-  roles: typeRoles[];
+  roles: string[];
   typeUser: typeUser;
 }

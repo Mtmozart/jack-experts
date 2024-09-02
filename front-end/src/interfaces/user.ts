@@ -1,14 +1,13 @@
-import { IAddress } from './address';
+import { IAddress, IAddressCreate } from './address';
 import { typeRoles } from './typeRoles';
 import { typeUser } from './typeUser';
 
 export interface IUserCreate {
-  id: string;
   name: string;
   username: string;
   email: string;
   password: string;
-  address: IAddress;
+  address: IAddressCreate;
 }
 
 export interface IUser {

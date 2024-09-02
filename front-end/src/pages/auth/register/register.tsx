@@ -7,6 +7,8 @@ import { FormFieldConstructor } from '../../../components/common/Form/form';
 import { SelectInput } from '../../../components/common/Select/SelectInput';
 import { States } from './step/PersonalInfos/utils/States';
 import { PersonalInfosInterface } from './step/PersonalInfos/utils/personalInfos.zod.interface';
+import { conversionToCreateDataApi } from '../../../utils/dataConversion';
+import { userRegister } from '../../../services/user.service';
 
 interface RegisterComponentsProps {}
 
@@ -20,9 +22,12 @@ export default function RegisterScreen(props: RegisterComponentsProps) {
     resolver: zodResolver(userSchema),
     mode: 'onBlur',
   });
-  console.log(errors);
+
   async function onSubmit(data: PersonalInfosInterface) {
     console.log('onSubmit chamada');
+    const apiData = conversionToCreateDataApi(data);
+    const response = userRegister(apiData);
+    console.log(response);
     console.log('Dados do formulário:', data);
   }
 
@@ -174,4 +179,7 @@ export default function RegisterScreen(props: RegisterComponentsProps) {
       </div>
     </section>
   );
+}
+function login() {
+  throw new Error('Function not implemented.');
 }

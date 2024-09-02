@@ -15,3 +15,12 @@ export interface IRegister {
   cep: string;
   complemento?: string;
 }
+export interface ILogin {
+  username: string;
+  senha: string;
+}
+
+export interface ILoginApi {
+  username: string;
+  password: string;
+}

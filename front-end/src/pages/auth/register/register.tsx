@@ -180,6 +180,3 @@ export default function RegisterScreen(props: RegisterComponentsProps) {
     </section>
   );
 }
-function login() {
-  throw new Error('Function not implemented.');
-}

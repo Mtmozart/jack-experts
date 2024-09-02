@@ -1,3 +1,4 @@
+import { ILogin, ILoginApi } from '../interfaces/auth';
 import { IUserCreate } from '../interfaces/user';
 import { PersonalInfosInterface } from '../pages/auth/register/step/PersonalInfos/utils/personalInfos.zod.interface';
 
@@ -19,5 +20,14 @@ export function conversionToCreateDataApi(
       number: data.número,
       complement: data.complemento,
     },
+  };
+}
+
+export function conversionToLoginDataApi(
+  data: ILogin,
+): ILoginApi {
+  return {    
+    username: data.username,
+    password: data.senha    
   };
 }

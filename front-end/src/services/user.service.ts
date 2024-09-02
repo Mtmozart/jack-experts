@@ -6,6 +6,6 @@ export async function userRegister(data: IUserCreate) {
 }
 
 export function getUser({ params, headers }: any = {}) {
-  console.log(params, headers)
+  console.log(params, headers);
   return get(`user`, { params, headers });
 }

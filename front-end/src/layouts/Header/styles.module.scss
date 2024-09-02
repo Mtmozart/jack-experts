@@ -56,6 +56,7 @@
 .nav__container__toggle {
   display: none;
 }
+
 .login__button {
   padding: 10px 20px;
   border-radius: 25px;
@@ -74,6 +75,31 @@
   }
 }
 
+.logout__button {
+  padding: 10px 40px;
+  width: auto;
+  border-radius: 25px;
+  background-color: $background-color;
+  font-size: $font-size-medium;
+  border: none;
+  color: $primary-color;
+  cursor: pointer;
+
+  button {
+    font-size: inherit;
+    &:hover {
+      color: $background-color;
+    }
+  }
+
+  &:hover {
+    background-color: $red;
+
+    button {
+      color: $background-color;
+    }
+  }
+}
 /* Consultas de mídia para tablets */
 @media (max-width: $tablet) {
   .nav__container__list {

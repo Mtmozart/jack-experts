@@ -36,7 +36,7 @@ export default function LoginScreen(props: LoginComponentsProps) {
         setTokenToLocalStorage('token', token);
         loginUser();
         navigate('/');
-      } 
+      }
     } catch (error) {
       console.error('Erro ao fazer login:', error);
     }

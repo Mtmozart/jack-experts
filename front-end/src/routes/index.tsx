@@ -6,6 +6,8 @@ import RegisterScreen from '../pages/user/register/register';
 import { ProfileScreen } from '../pages/user/profile';
 import UpdateScreen from '../pages/user/update/update';
 import ResetPasswordScreen from '../pages/auth/reset-password/resetPassword';
+import DashboardScreen from '../pages/task/dashboard';
+import { CreateScreen } from '../pages/task/create';
 export function RoutesPage() {
   return (
     <Router>
@@ -20,6 +22,8 @@ export function RoutesPage() {
             element={<ResetPasswordScreen />}
             path="/reset-password"
           ></Route>
+          <Route element={<DashboardScreen />} path="/dashboard"></Route>
+          <Route element={<CreateScreen />} path="/create-task"></Route>
         </Route>
       </Routes>
     </Router>

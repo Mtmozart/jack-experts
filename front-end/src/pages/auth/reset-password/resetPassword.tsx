@@ -25,7 +25,7 @@ export default function ResetPasswordScreen(
   const FormField = FormFieldConstructor<IResetPassword>();
 
   async function onSubmit(data: IResetPassword) {
-    resetPassword(data)    
+    resetPassword(data);
   }
 
   const { currentUser } = useAuthProvider();

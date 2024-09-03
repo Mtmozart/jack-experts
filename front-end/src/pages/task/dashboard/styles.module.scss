@@ -1,0 +1,69 @@
+@import '../../../styles/variables.scss';
+
+.task__container__task {
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  height: 90vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: $primary-color;
+  overflow-x: hidden;
+
+  @media (max-width: 600px) {
+    height: auto;
+    padding: 10px;
+  }
+}
+
+.task__container__task__content {
+  margin: 0 auto;
+  padding: 0;
+  gap: 30px;
+  width: 80%;
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  overflow: auto;
+
+  @media (max-width: 600px) {
+    width: 100%;
+    min-height: auto;
+    gap: 20px;
+  }
+}
+
+.task__container__task__to__create {
+  width: 100%;
+  text-align: center;
+  box-sizing: border-box;
+  overflow-x: hidden;
+
+  a {
+    text-decoration: none;
+    display: inline-block;
+    max-width: 100%;
+    padding: 10px 20px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    background-color: $primary-color;
+    border-radius: 25px;
+    color: $white;
+
+    &:hover {
+      background-color: $white;
+      color: $primary-color;
+      border: 1px solid $primary-color;
+    }
+  }
+
+  @media (max-width: 600px) {
+    border: none;
+  }
+}
+
+.container__task__your__tasks {
+}

@@ -38,7 +38,7 @@ export function Header() {
                 <Link to="/profile">Perfil</Link>
               </li>
               <li>
-                <Link to="/tasks">Tasks</Link>
+                <Link to="/dashboard">Tasks</Link>
               </li>
               <li>
                 <button

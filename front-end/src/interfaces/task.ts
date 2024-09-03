@@ -1,11 +1,23 @@
-import { typeTaskColor } from './typeTaskColor';
+import {
+  TaskColor,
+  typeTaskColorEnum,
+} from '../pages/task/create/TaskInfo/Color';
+import { typeTaskStatusEnum } from '../pages/task/create/TaskInfo/Status';
 import { typeTaskStatus } from './typeTaskStatus';
 
 export interface ITaskCreate {
-  userId: string;
+  título: string;
+  descrição: string;
+  data: string;
+  status: typeTaskStatusEnum;
+  cor: typeTaskColorEnum;
+}
+
+export interface ITaskCreateApi {
+  userId: string | undefined;
   title: string;
   description: string;
-  limitDate: string;
-  status: typeTaskStatus;
-  color: typeTaskColor;
+  limitDate: Date;
+  status: string;
+  color: string;
 }

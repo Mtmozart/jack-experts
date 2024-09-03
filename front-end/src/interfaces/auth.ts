@@ -41,3 +41,7 @@ export interface ILoginApi {
   username: string;
   password: string;
 }
+
+export interface IResetPassword {
+  email: string;
+}

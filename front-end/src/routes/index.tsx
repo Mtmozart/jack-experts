@@ -5,6 +5,7 @@ import LoginScreen from '../pages/auth/login/login';
 import RegisterScreen from '../pages/user/register/register';
 import { ProfileScreen } from '../pages/user/profile';
 import UpdateScreen from '../pages/user/update/update';
+import ResetPasswordScreen from '../pages/auth/reset-password/resetPassword';
 export function RoutesPage() {
   return (
     <Router>
@@ -15,6 +16,10 @@ export function RoutesPage() {
           <Route element={<LoginScreen />} path="/login"></Route>
           <Route element={<ProfileScreen />} path="/profile"></Route>
           <Route element={<UpdateScreen />} path="/update"></Route>
+          <Route
+            element={<ResetPasswordScreen />}
+            path="/reset-password"
+          ></Route>
         </Route>
       </Routes>
     </Router>

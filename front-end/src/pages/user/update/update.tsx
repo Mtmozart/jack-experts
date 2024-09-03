@@ -32,7 +32,6 @@ export default function UpdateScreen(props: RegisterComponentsProps) {
 
   const navigate = useNavigate();
 
-  // Atualiza os valores do formulário sempre que currentUser mudar
   useEffect(() => {
     if (currentUser) {
       reset({

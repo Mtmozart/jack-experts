@@ -3,4 +3,3 @@ export function setTokenToLocalStorage(name: string, value: string) {
 }
 
 export const getTokenToLocalStorage = () => localStorage.getItem('token');
-

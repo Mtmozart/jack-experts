@@ -26,7 +26,6 @@ export function AuthProvider({ children }: IContextProvider) {
     }
   };
 
-
   const load = async () => {
     const token = getTokenToLocalStorage();
     if (token) {

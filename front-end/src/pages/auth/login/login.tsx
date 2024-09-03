@@ -36,9 +36,7 @@ export default function LoginScreen(props: LoginComponentsProps) {
         setTokenToLocalStorage('token', token);
         loginUser();
         navigate('/');
-      } else {
-        console.error('Token não encontrado na resposta da API');
-      }
+      } 
     } catch (error) {
       console.error('Erro ao fazer login:', error);
     }
@@ -83,7 +81,8 @@ export default function LoginScreen(props: LoginComponentsProps) {
                 Não tem uma conta ? <Link to={'/register'}>Cadastre-se!</Link>
               </div>
               <div>
-                Esqueceu sua senha ? <Link to={'/'}>Clique aqui!</Link>
+                Esqueceu sua senha ?{' '}
+                <Link to={'/reset-password'}>Clique aqui!</Link>
               </div>
             </div>
           </>

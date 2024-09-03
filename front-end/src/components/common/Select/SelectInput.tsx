@@ -17,6 +17,7 @@ interface SelectInputProps<T extends FieldValues> {
   setError: UseFormSetError<T>;
   name: Path<T>;
   inputProps?: InputHTMLAttributes<HTMLSelectElement>;
+  value?: string;
 }
 
 export function SelectInput<T extends FieldValues>(props: SelectInputProps<T>) {
@@ -30,7 +31,7 @@ export function SelectInput<T extends FieldValues>(props: SelectInputProps<T>) {
       <select
         {...props.register(props.name)}
         {...props.inputProps}
-        defaultValue=""
+        defaultValue={props.value}
         className={`${styles.select} ${props.className} ${props.error ? styles.inputError : styles.selectBordered}`}
       >
         <option value="" disabled>

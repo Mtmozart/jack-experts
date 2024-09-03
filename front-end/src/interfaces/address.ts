@@ -19,3 +19,14 @@ export interface IAddressCreate {
   number: string;
   complement?: string;
 }
+
+export interface IAddressUpdate {
+  cep?: string;
+  state?: string;
+  country?: string;
+  city?: string;
+  neighborhood?: string;
+  street?: string;
+  number?: string;
+  complement?: string;
+}

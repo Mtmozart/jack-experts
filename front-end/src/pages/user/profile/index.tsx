@@ -1,7 +1,7 @@
 import { Link, useNavigate } from 'react-router-dom';
-import { useAuthProvider } from '../../context/Auth';
 import styles from './styles.module.scss';
-import { deleteUser } from '../../services/user.service';
+import { useAuthProvider } from '../../../context/Auth';
+import { deleteUser } from '../../../services/user.service';
 
 export function ProfileScreen() {
   const navigate = useNavigate();
@@ -31,7 +31,7 @@ export function ProfileScreen() {
                   </a>
                 </div>
                 <div className={styles.profile__links__container__item}>
-                  <Link to={''}>Atualizar</Link>
+                  <Link to={'/update'}>Atualizar</Link>
                 </div>
               </div>
 

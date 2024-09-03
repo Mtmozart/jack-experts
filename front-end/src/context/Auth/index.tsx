@@ -9,6 +9,7 @@ const AuthContext = createContext<IAuthProvider>({} as IAuthProvider);
 export function AuthProvider({ children }: IContextProvider) {
   const [currentUser, setCurrentUser] = useState<IUser | null>(null);
   const [status, setStatus] = useState<string>('pending');
+  const [loading, setLoading] = useState(true);
 
   const logout = async () => {
     localStorage.clear();
@@ -25,11 +26,20 @@ export function AuthProvider({ children }: IContextProvider) {
     }
   };
 
+
   const load = async () => {
     const token = getTokenToLocalStorage();
-    if (!token) return;
-
-    loginUser();
+    if (token) {
+      try {
+        await loginUser();
+      } catch (error) {
+        setStatus('unauthorized');
+        console.error('Failed to fetch user:', error);
+      }
+    } else {
+      setStatus('unauthorized');
+    }
+    setLoading(false);
   };
 
   useEffect(() => {

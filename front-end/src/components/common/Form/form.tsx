@@ -13,6 +13,7 @@ interface FormFieldProps<T extends FieldValues> {
   register: UseFormRegister<T>;
   setError: UseFormSetError<T>;
   name: Path<T>;
+  value?: string;
   inputClassName?: string;
   containerClassName?: string;
   inputProps?: InputHTMLAttributes<HTMLInputElement>;
@@ -27,6 +28,7 @@ function FormField<T extends FieldValues>(props: FormFieldProps<T>) {
       <input
         {...props.register(props.name)}
         {...props.inputProps}
+        value={props.value}
         className={`${styles.input} ${
           props.error ? styles.input__error : styles.input__bordered
         } ${props.inputClassName}`}

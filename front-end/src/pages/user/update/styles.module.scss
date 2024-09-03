@@ -1,0 +1,63 @@
+@import '../../../styles/variables.scss';
+
+.form__container {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  height: auto;
+  box-sizing: border-box;
+  flex-direction: column;
+
+  h1 {
+    color: $primary-color;
+    font-size: $font-size-xxlarge;
+    text-align: center;
+  }
+}
+
+.form__container__center {
+  padding: 20px;
+  width: 31.25rem;
+  border-radius: 25px;
+  background-color: $white;
+  box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.3);
+  height: auto;
+}
+
+.form__container__button {
+  background-color: $primary-color;
+  color: $white;
+  border: none;
+  width: 80%;
+  border-radius: 20px;
+  padding: 10px 20px;
+  font-size: $font-size-medium;
+  cursor: pointer;
+  transition:
+    background-color 0.3s ease,
+    transform 0.2s ease;
+  display: block;
+  margin: 0 auto;
+
+  &:hover {
+    background-color: darken($primary-color, 10%);
+  }
+
+  &:active {
+    transform: scale(0.98);
+  }
+}
+
+@media (max-width: $desktop) {
+  .form__container__center {
+    width: 20rem;
+  }
+}
+
+@media (max-width: $mobile) {
+  .form__container__center {
+    width: 13rem;
+  }
+}

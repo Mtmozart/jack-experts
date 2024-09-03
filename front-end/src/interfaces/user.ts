@@ -1,4 +1,4 @@
-import { IAddress, IAddressCreate } from './address';
+import { IAddress, IAddressCreate, IAddressUpdate } from './address';
 import { typeRoles } from './typeRoles';
 import { typeUser } from './typeUser';
 
@@ -8,6 +8,14 @@ export interface IUserCreate {
   email: string;
   password: string;
   address: IAddressCreate;
+}
+
+export interface IUserUpdate {
+  name?: string;
+  username?: string;
+  email?: string;
+  password?: string;
+  address?: IAddressUpdate;
 }
 
 export interface IUser {

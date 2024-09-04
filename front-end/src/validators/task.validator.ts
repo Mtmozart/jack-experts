@@ -17,3 +17,11 @@ export const taskSchema = z.object({
     .string({ required_error: 'O campo da cor é obrigatório.' })
     .min(1, 'O campo da cor é obrigatório.'),
 });
+
+export const taskSchemaSearch = z.object({
+  título: z.string().optional(),
+  favorita: z.boolean(),
+  status: z.string().optional(),
+  referência: z.string().optional(),
+  ordenar: z.string().optional(),
+});

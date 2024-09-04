@@ -10,7 +10,6 @@ export type TaskInfosInterface = {
   cor: typeTaskColorEnum;
 };
 
-
 export const TaskInfosSchema = z.object({
   título: z
     .string()

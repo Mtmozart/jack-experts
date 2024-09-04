@@ -18,6 +18,7 @@ export default class DefaultResponseTaskDto {
     this.title = task.title;
     this.description = task.description;
     this.favorite = task.favorite;
+    this.limitDate = task.limitDate;
     this.status = task.status;
     this.color = task.color;
     this.createdAt = task.createdAt;

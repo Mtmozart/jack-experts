@@ -1,4 +1,5 @@
 export const TaskStatus = [
+  'Nenhum',
   'Criado',
   'Pendente',
   'Progresso',

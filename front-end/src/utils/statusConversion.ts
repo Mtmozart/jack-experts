@@ -11,5 +11,5 @@ export function statusConversion(status: string) {
     return statusObject[status as keyof typeof statusObject];
   }
 
-  return statusObject.Criado;
+  return '';
 }

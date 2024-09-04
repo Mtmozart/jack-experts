@@ -11,24 +11,24 @@
 
 .form__container__button {
   background-color: $primary-color;
-  color: $white; 
-  border: none; 
-  width: 80%; 
-  border-radius: 20px; 
-  padding: 10px 20px; 
-  font-size: $font-size-medium; 
-  cursor: pointer; 
+  color: $white;
+  border: none;
+  width: 80%;
+  border-radius: 20px;
+  padding: 10px 20px;
+  font-size: $font-size-medium;
+  cursor: pointer;
   transition:
-    background-color 0.3s ease, 
-    transform 0.2s ease; 
-  display: block; 
-  margin: 0 auto; 
+    background-color 0.3s ease,
+    transform 0.2s ease;
+  display: block;
+  margin: 0 auto;
 
   &:hover {
-    background-color: darken($primary-color, 10%); 
+    background-color: darken($primary-color, 10%);
   }
 
   &:active {
-    transform: scale(0.98); 
+    transform: scale(0.98);
   }
 }

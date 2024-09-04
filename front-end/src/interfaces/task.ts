@@ -1,3 +1,5 @@
+import { typeTaskSearchByEnum } from '../components/pages/search/util/TaskSearchBy';
+import { typeTaskSearchOrderEnum } from '../components/pages/search/util/TaskSearchOrder';
 import {
   TaskColor,
   typeTaskColorEnum,
@@ -20,4 +22,30 @@ export interface ITaskCreateApi {
   limitDate: Date;
   status: string;
   color: string;
+}
+
+export interface ITask {
+  id: string;
+  title: string;
+  description: string;
+  limitDate: Date;
+  status: string;
+  favorite: string;
+  color: string;
+}
+
+export interface ITaskSearch {
+  título?: string;
+  status?: typeTaskStatusEnum;
+  favorita?: boolean;
+  ordenar?: typeTaskSearchOrderEnum;
+  referência?: typeTaskSearchByEnum;
+}
+
+export interface ITaskSearchApi {
+  title?: string;
+  status?: string;
+  favorite?: boolean;
+  sortOrder?: string;
+  sortBy?: string;
 }

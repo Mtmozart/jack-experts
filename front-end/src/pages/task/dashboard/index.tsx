@@ -2,6 +2,8 @@ import { Link } from 'react-router-dom';
 import { useAuthProvider } from '../../../context/Auth';
 import styles from './styles.module.scss';
 import { FaPlus } from 'react-icons/fa6';
+import { TaskCard } from '../../../components/task-card/TaskCard';
+import SearchTaskForm from '../../../components/pages/search';
 
 export default function DashBoardScreen() {
   const { currentUser } = useAuthProvider();
@@ -19,6 +21,9 @@ export default function DashBoardScreen() {
             </div>
             <div className={styles.container__task__your__tasks}>
               <h2>Pesquise suas tasks:</h2>
+            </div>
+            <div className={styles.container__search__form}>
+              <SearchTaskForm />
             </div>
           </section>
         </section>

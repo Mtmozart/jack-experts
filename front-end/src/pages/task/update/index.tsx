@@ -6,7 +6,6 @@ import { taskSchema } from '../../../validators/task.validator';
 import { useAuthProvider } from '../../../context/Auth';
 import { FormFieldConstructor } from '../../../components/common/Form/form';
 import { SelectInput } from '../../../components/common/Select/SelectInput';
-import { typeTaskStatus } from '../../../interfaces/typeTaskStatus';
 import { TaskStatus } from './TaskInfo/Status';
 import { TaskColor } from './TaskInfo/Color';
 import { TextArea } from '../../../components/common/Text-area/TextArea';
@@ -19,9 +18,8 @@ import {
 } from '../../../services/task.service';
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { statusConversionToPortuguese } from '../../../utils/statusConversionToPortuguese';
 import { statusConversionToPortugueseRecord } from '../../../utils/statusConversionToPortugueseRecord';
-import { colorConversionToPortugueseRecord } from '../../../utils/colorConversionToPortugueseRecord';
+import { colorConversionToPortugueseByHex } from '../../../utils/colorConversionToPortugueseRecord';
 
 interface UpdateComponentsProps {}
 
@@ -56,7 +54,7 @@ export function UpdateTaskScreen(props: UpdateComponentsProps) {
             ? new Date(foundTask.limitDate).toISOString().split('T')[0]
             : '',
           status: statusConversionToPortugueseRecord(foundTask.status),
-          cor: colorConversionToPortugueseRecord(foundTask.color),
+          cor: colorConversionToPortugueseByHex(foundTask.color),
         });
       } catch (error) {
         console.error('Erro ao buscar a tarefa:', error);
@@ -64,7 +62,7 @@ export function UpdateTaskScreen(props: UpdateComponentsProps) {
     };
 
     fetchTask();
-  }, [id]);
+  }, [id, reset]);
 
   async function onSubmit(data: TaskInfosInterface) {
     const dataApi = conversionToCreateTaskDataApi(data, currentUser?.id);

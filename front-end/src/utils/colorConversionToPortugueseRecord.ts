@@ -1,17 +1,18 @@
-export function colorConversionToPortugueseRecord(
-  color: string,
+export function colorConversionToPortugueseByHex(
+  hexColor: string,
 ): 'Vermelho' | 'Verde' | 'Azul' | 'Amarelo' | 'Cinza' | 'Lilás' | undefined {
-  const colorObject: Record<
+  const colors: Record<
     string,
     'Vermelho' | 'Verde' | 'Azul' | 'Amarelo' | 'Cinza' | 'Lilás'
   > = {
-    red: 'Vermelho',
-    green: 'Verde',
-    blue: 'Azul',
-    yellow: 'Amarelo',
-    gray: 'Cinza',
-    purple: 'Lilás',
+    '#FF6F6F': 'Vermelho',
+    '#9CCC65': 'Verde',
+    '#64B5F6': 'Azul',
+    '#FFF176': 'Amarelo',
+    '#E0E0E0': 'Cinza',
+    '#CE93D8': 'Lilás',
   };
+  const normalizedHexColor = hexColor.toUpperCase();
 
-  return colorObject[color] || undefined;
+  return colors[normalizedHexColor] || undefined;
 }

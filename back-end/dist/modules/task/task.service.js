@@ -81,7 +81,7 @@ let TaskService = class TaskService {
             const task = await this.findOne(id);
             task.favorite = !task.favorite;
             await this.taskRepository.save(task);
-            return true;
+            return task.favorite;
         }
         catch (error) {
             throw error;

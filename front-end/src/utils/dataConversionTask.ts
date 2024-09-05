@@ -51,10 +51,10 @@ export function conversionToSearchTaskDataApi(
   }
 
   let sortBy = '';
-  if (data.ordenar == null) {
+  if (data.referência == null) {
     sortBy = referenceConversion('');
   } else {
-    sortBy = referenceConversion(data.ordenar);
+    sortBy = referenceConversion(data.referência);
   }
 
   return {

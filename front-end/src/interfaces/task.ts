@@ -30,7 +30,7 @@ export interface ITask {
   description: string;
   limitDate: Date;
   status: string;
-  favorite: string;
+  favorite: boolean;
   color: string;
 }
 
@@ -54,7 +54,7 @@ export interface ITaskSearch {
 export interface ITaskSearchApi {
   title?: string;
   status?: string;
-  favorite?: boolean;
+  favorite?: string;
   sortOrder?: string;
   sortBy?: string;
 }

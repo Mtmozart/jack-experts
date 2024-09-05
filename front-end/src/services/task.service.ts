@@ -5,7 +5,7 @@ import {
   ITaskUpdateApi,
 } from '../interfaces/task';
 import { formatterQueryParams } from '../utils/formateQuery';
-import { get, post, put } from './api.service';
+import { del, get, patch, post, put } from './api.service';
 
 export async function createTask(
   data: ITaskCreateApi,
@@ -33,4 +33,12 @@ export async function updateTask(
 
 export async function findTask(id: string, { params, headers }: any = {}) {
   return get(`task/${id}`, { params, headers });
+}
+
+export async function favoriteTask(id: string, { params, headers }: any = {}) {
+  return patch(`task/favorite/${id}`, { params, headers });
+}
+
+export async function deleteTask(id: string, { params, headers }: any = {}) {
+  return del(`task/${id}`, { params, headers });
 }

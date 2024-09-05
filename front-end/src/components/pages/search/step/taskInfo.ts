@@ -12,7 +12,7 @@ import { TaskSearchBy, typeTaskSearchByEnum } from '../util/TaskSearchBy';
 export type TaskInfosSearchInterface = {
   título?: string;
   status?: typeTaskStatusEnum;
-  favorita?: boolean;
+  favorita?: string;
   ordenar?: typeTaskSearchOrderEnum;
   referência?: typeTaskSearchByEnum;
 };

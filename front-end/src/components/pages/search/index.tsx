@@ -15,6 +15,7 @@ import { conversionToSearchTaskDataApi } from '../../../utils/dataConversionTask
 import { searchTask } from '../../../services/task.service';
 import { ITask } from '../../../interfaces/task';
 import { TaskCard } from '../../task-card/TaskCard';
+import { TaskSearchFavorite } from './util/TaskSearchFavoirte';
 
 export default function SearchTaskForm() {
   const [tasks, setTasks] = useState<ITask[]>([]);
@@ -52,14 +53,13 @@ export default function SearchTaskForm() {
               placeholder: 'Título',
             }}
           />
-          <FormField
-            name="favorita"
+
+          <SelectInput
             register={register}
             setError={setError}
-            error={errors?.favorita}
-            inputProps={{
-              type: 'checkbox',
-            }}
+            name="favorita"
+            items={TaskSearchFavorite}
+            error={errors?.status as FieldError | undefined}
           />
           <SelectInput
             register={register}
@@ -101,7 +101,7 @@ export default function SearchTaskForm() {
                 status={t.status}
                 color={t.color || ''}
                 id={t.id}
-                favorite={t.favorite || ''}
+                favorite={t.favorite || false}
               />
             </div>
           ))

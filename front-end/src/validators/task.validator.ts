@@ -20,7 +20,7 @@ export const taskSchema = z.object({
 
 export const taskSchemaSearch = z.object({
   título: z.string().optional(),
-  favorita: z.boolean(),
+  favorita: z.string().optional(),
   status: z.string().optional(),
   referência: z.string().optional(),
   ordenar: z.string().optional(),

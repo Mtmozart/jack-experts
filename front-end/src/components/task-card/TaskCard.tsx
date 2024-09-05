@@ -4,6 +4,8 @@ import { AiFillEdit, AiFillHeart, AiOutlineClose } from 'react-icons/ai';
 import { ITask } from '../../interfaces/task';
 import formatDate from '../../utils/formatDate';
 import { statusConversionToPortuguese } from '../../utils/statusConversionToPortuguese';
+import { FavoriteButton } from '../favoriteButton/Favorite';
+import { DeleteButton } from '../deleteButton/Delete';
 
 export function TaskCard(task: ITask) {
   const limitDateFormatted = formatDate(task.limitDate);
@@ -23,12 +25,11 @@ export function TaskCard(task: ITask) {
             <Link to={`/update-task/${task.id}`}>
               <AiFillEdit size={27} color="blue" />
             </Link>
-            <Link to={`/edit-task/${task}`}>
-              <AiOutlineClose size={30} color="red" />
-            </Link>
-            <Link to={`/edit-task/${task}`}>
-              <AiFillHeart color="red" />
-            </Link>
+            <FavoriteButton
+              id={task.id}
+              initialFavoriteStatus={task.favorite}
+            />
+            <DeleteButton id={task.id} />
           </div>
         </div>
         <p className={styles.description}>

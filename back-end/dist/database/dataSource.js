@@ -8,7 +8,7 @@ const user_entity_1 = require("../modules/user/entities/user.entity");
 const typeorm_1 = require("typeorm");
 const dataSourceConfig = () => {
     return {
-        type: 'postgres',
+        type: 'mysql',
         ...(config_1.EnvConfig.ENV === 'production'
             ? {
                 url: config_1.EnvConfig.database.URL,

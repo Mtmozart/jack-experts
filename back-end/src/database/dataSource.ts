@@ -6,7 +6,7 @@ import { DataSource, DataSourceOptions } from 'typeorm';
 
 export const dataSourceConfig = (): DataSourceOptions => {
   return {
-    type: 'postgres',
+    type: 'mysql',
     ...(EnvConfig.ENV === 'production'
       ? {
           url: EnvConfig.database.URL,

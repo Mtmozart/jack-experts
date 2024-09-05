@@ -34,6 +34,15 @@ export interface ITask {
   color: string;
 }
 
+export interface ITaskUpdateApi {
+  title?: string;
+  description?: string;
+  limitDate?: Date;
+  status?: string;
+  favorite?: string;
+  color?: string;
+}
+
 export interface ITaskSearch {
   título?: string;
   status?: typeTaskStatusEnum;

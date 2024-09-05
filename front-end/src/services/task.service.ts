@@ -2,9 +2,10 @@ import {
   ITaskCreateApi,
   ITaskSearch,
   ITaskSearchApi,
+  ITaskUpdateApi,
 } from '../interfaces/task';
 import { formatterQueryParams } from '../utils/formateQuery';
-import { get, post } from './api.service';
+import { get, post, put } from './api.service';
 
 export async function createTask(
   data: ITaskCreateApi,
@@ -20,4 +21,16 @@ export async function searchTask(
 ) {
   const queryParams = formatterQueryParams(data);
   return get(`task/search/${userId}?${queryParams}`, { params, headers });
+}
+
+export async function updateTask(
+  id: string,
+  data: ITaskUpdateApi,
+  { params, headers }: any = {},
+) {
+  return put(`task/${id}`, { data, params, headers });
+}
+
+export async function findTask(id: string, { params, headers }: any = {}) {
+  return get(`task/${id}`, { params, headers });
 }

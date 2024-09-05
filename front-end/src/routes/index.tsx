@@ -8,6 +8,7 @@ import UpdateScreen from '../pages/user/update/update';
 import ResetPasswordScreen from '../pages/auth/reset-password/resetPassword';
 import DashboardScreen from '../pages/task/dashboard';
 import { CreateScreen } from '../pages/task/create';
+import { UpdateTaskScreen } from '../pages/task/update';
 export function RoutesPage() {
   return (
     <Router>
@@ -24,6 +25,7 @@ export function RoutesPage() {
           ></Route>
           <Route element={<DashboardScreen />} path="/dashboard"></Route>
           <Route element={<CreateScreen />} path="/create-task"></Route>
+          <Route element={<UpdateTaskScreen />} path="/update-task/:id"></Route>
         </Route>
       </Routes>
     </Router>

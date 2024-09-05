@@ -20,7 +20,7 @@ export function TaskCard(task: ITask) {
             <strong>Título: </strong> {task.title} <br />
           </h3>
           <div className={styles.header}>
-            <Link to={`/edit-task/${task}`}>
+            <Link to={`/update-task/${task.id}`}>
               <AiFillEdit size={27} color="blue" />
             </Link>
             <Link to={`/edit-task/${task}`}>

@@ -13,6 +13,7 @@ exports.UpdateTaskDto = void 0;
 const swagger_1 = require("@nestjs/swagger");
 const class_validator_1 = require("class-validator");
 const taskStatus_1 = require("../../enum/taskStatus");
+const colorEnum_1 = require("../../enum/colorEnum");
 class UpdateTaskDto {
 }
 exports.UpdateTaskDto = UpdateTaskDto;
@@ -57,4 +58,26 @@ __decorate([
     (0, class_validator_1.IsOptional)(),
     __metadata("design:type", String)
 ], UpdateTaskDto.prototype, "status", void 0);
+__decorate([
+    (0, swagger_1.ApiProperty)({
+        description: `
+    Cores disponíveis:
+    - **Red**: '#FF6F6F'
+    - **Green**: '#9CCC65'
+    - **Blue**: '#64B5F6'
+    - **Yellow**: '#FFF176'
+    - **Gray**: '#E0E0E0'
+    - **Lilac**: '#CE93D8'
+    
+    A cor deve ser um dos valores listados acima.
+  `,
+        enum: colorEnum_1.EnumColors,
+        default: colorEnum_1.EnumColors.Yellow,
+    }),
+    (0, class_validator_1.IsEnum)(colorEnum_1.EnumColors, {
+        message: 'A cor deve ser um tipo válido.',
+    }),
+    (0, class_validator_1.IsOptional)(),
+    __metadata("design:type", String)
+], UpdateTaskDto.prototype, "color", void 0);
 //# sourceMappingURL=updateTaskDto.js.map

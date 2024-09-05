@@ -1,16 +1,12 @@
 import {
   ITaskCreateApi,
-  ITaskSearch,
   ITaskSearchApi,
   ITaskUpdateApi,
 } from '../interfaces/task';
 import { formatterQueryParams } from '../utils/formateQuery';
 import { del, get, patch, post, put } from './api.service';
 
-export async function createTask(
-  data: ITaskCreateApi,
-  { params, headers }: any = {},
-) {
+export async function createTask(data: ITaskCreateApi) {
   return post(`task`, { data });
 }
 

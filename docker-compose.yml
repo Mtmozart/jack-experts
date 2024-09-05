@@ -1,0 +1,44 @@
+version: "3.8"
+services:
+  mysql-je:
+    image: mysql
+    container_name: je-mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: my-secret-pw
+      MYSQL_DATABASE: my_database
+      MYSQL_USER: my_user
+      MYSQL_PASSWORD: my_user_password
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql
+    networks:
+        - je-bridge
+
+  redis:
+      image: redis
+      container_name: redis-mks 
+      networks:
+        - je-bridge
+      ports:
+        - "6379:6379"
+
+  front-je:
+    build:
+      context: ./front-end
+    volumes:
+      - type: bind
+        source: ./front-end
+        target: /src
+      - type: bind
+        source: ./front-end.sh
+        target: /src/front-end.sh
+    networks:
+        - je-bridge
+
+networks:
+  je-bridge:
+    driver: bridge
+
+volumes:
+  mysql-data:

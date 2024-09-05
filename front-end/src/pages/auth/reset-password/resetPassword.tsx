@@ -4,7 +4,6 @@ import { IResetPassword } from '../../../interfaces/auth';
 import styles from './index.module.scss';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { LoginSchema } from '../../../validators/login.validator';
 import { ResetSchema } from '../../../validators/reset.validator';
 import { resetPassword } from '../../../services/auth.service';
 

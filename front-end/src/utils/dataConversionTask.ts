@@ -1,9 +1,5 @@
 import { TaskInfosSearchInterface } from '../components/pages/search/step/taskInfo';
-import {
-  ITaskCreateApi,
-  ITaskSearch,
-  ITaskSearchApi,
-} from '../interfaces/task';
+import { ITaskCreateApi, ITaskSearchApi } from '../interfaces/task';
 import { TaskInfosInterface } from '../pages/task/create/TaskInfo/taskInfos.zod';
 import { colorConversion } from './colorConversion';
 import { orderConversion } from './orderConversion';

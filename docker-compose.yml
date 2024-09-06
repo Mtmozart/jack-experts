@@ -55,6 +55,8 @@ services:
         target: /src/front-end.sh
     networks:
       - je-bridge
+    ports:
+      - "3000:3000"
   
   back-je:
     build:
@@ -68,6 +70,8 @@ services:
         target: /src/back-end.sh
     networks:
       - je-bridge
+    ports:
+      - "8080:8080"
     depends_on:
       - mysql-je
       - redis

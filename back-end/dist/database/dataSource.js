@@ -23,7 +23,7 @@ const dataSourceConfig = () => {
                 username: config_1.EnvConfig.database.USER_DB,
                 password: config_1.EnvConfig.database.PASSWORD_DB.toString(),
                 database: config_1.EnvConfig.database.NAME_DB,
-                synchronize: false,
+                synchronize: true,
                 ssl: false,
             }),
         entities: [user_entity_1.User, address_entity_1.Address, task_entity_1.Task],

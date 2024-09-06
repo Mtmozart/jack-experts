@@ -9,7 +9,7 @@ import {
 import styles from './styles.module.scss';
 
 interface FormFieldProps<T extends FieldValues> {
-  error?: FieldError; // Ajuste para opcional
+  error?: FieldError;
   register: UseFormRegister<T>;
   setError: UseFormSetError<T>;
   name: Path<T>;

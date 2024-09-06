@@ -81,6 +81,7 @@ export function UpdateTaskScreen(props: UpdateComponentsProps) {
         navigate('/dashboard');
       } else {
         await updateTask(taskData?.id, dataApi);
+        navigate('/dashboard');
         toast.success('Task atualizada com sucesso');
       }
     } catch (error: any) {

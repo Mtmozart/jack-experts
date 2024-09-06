@@ -1,16 +1,16 @@
-FROM node:v20.9.0-alpine
+FROM node:latest
 
 WORKDIR /src
 
-RUN mkdir -p /src
+COPY package.json yarn.lock ./
 
-COPY package.json /src/
-
-RUN yarn cache clean \
-  rm node_modules/ \
-  yarn install --frozen-lockfile
+RUN yarn install --frozen-lockfile
 
 COPY . .
+
+
+COPY .env ./
+
 
 EXPOSE 8080
 

@@ -1,27 +1,47 @@
 version: "3.8"
+
 services:
   mysql-je:
-    image: mysql
-    container_name: je-mysql
+    image: mysql:latest
+    container_name: mysql-je
     environment:
-      MYSQL_ROOT_PASSWORD: my-secret-pw
-      MYSQL_DATABASE: my_database
-      MYSQL_USER: my_user
-      MYSQL_PASSWORD: my_user_password
+      - MYSQL_ROOT_PASSWORD=${PASSWORD_DB}
+      - MYSQL_DATABASE=${USER_DB}
+      - MY_USER=${USER_DB}
+      - MYSQL_PASSWORD=${PASSWORD_DB}
+      - MYSQL_TCP_PORT=3306
+
     ports:
       - "3306:3306"
     volumes:
       - mysql-data:/var/lib/mysql
+    stdin_open: true
+    tty: true
     networks:
-        - je-bridge
+      - je-bridge
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    networks:
+      - je-bridge
+    environment:
+      PMA_HOST: mysql-je
+      PMA_PORT: 3306
+    ports:
+      - "8000:80"
+    depends_on:
+      - mysql-je
 
   redis:
-      image: redis
-      container_name: redis-mks 
-      networks:
-        - je-bridge
-      ports:
-        - "6379:6379"
+    image: redis
+    container_name: redis-je
+    networks:
+      - je-bridge
+    ports:
+      - "6379:6379"
+    environment:
+      REDIS_HOST: ${REDIS_HOST}
+      REDIS_PORT: ${REDIS_PORT}
 
   front-je:
     build:
@@ -34,7 +54,36 @@ services:
         source: ./front-end.sh
         target: /src/front-end.sh
     networks:
-        - je-bridge
+      - je-bridge
+  
+  back-je:
+    build:
+      context: ./back-end
+    volumes:
+      - type: bind
+        source: ./back-end
+        target: /src
+      - type: bind
+        source: ./back-end.sh
+        target: /src/back-end.sh
+    networks:
+      - je-bridge
+    depends_on:
+      - mysql-je
+      - redis
+    environment:
+      NODE_ENV: ${NODE_ENV}
+      URL_DATABASE: ${URL_DATABASE}
+      JWT_SECRET: ${JWT_SECRET}
+      HOST_EMAIL: ${HOST_EMAIL}
+      PORT_EMAIL: ${PORT_EMAIL}
+      USER_AUTH_EMAIL: ${USER_AUTH_EMAIL}
+      PASS_EMAIL: ${PASS_EMAIL}
+      HOST_DB: mysql-je
+      PORT_DB: 3306 
+      USER_DB: ${USER_DB}
+      PASSWORD_DB: ${PASSWORD_DB}
+      NAME_DB: ${NAME_DB}
 
 networks:
   je-bridge:

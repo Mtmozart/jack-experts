@@ -1,7 +1,9 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { favoriteTask } from '../../services/task.service';
 import styles from './style.module.scss';
 import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai';
+import { toast } from 'react-toastify';
+import { toastMessage } from '../../helpers/messages';
 
 interface FavoriteButtonProps {
   id: string | undefined;
@@ -13,17 +15,27 @@ export const FavoriteButton: React.FC<FavoriteButtonProps> = ({
   initialFavoriteStatus,
 }) => {
   const [isFavorite, setIsFavorite] = useState(initialFavoriteStatus);
+  const [requesting, setRequesting] = useState<boolean>(false);
 
   const handleToggleFavorite = async () => {
+    if (requesting) {
+      toast.warn(toastMessage.REQUESTING);
+      return;
+    }
     if (!id) {
-      console.log('Task ID is missing.');
+      toast.warn(toastMessage.INTERNAL_SERVER_ERROR);
       return;
     }
     try {
       const newStatus = await favoriteTask(id);
       setIsFavorite(newStatus);
-    } catch (error) {
-      console.error('Error updating favorite status:', error);
+      toast.success('Requisição feita sucesso.');
+    } catch (error: any) {
+      const message = error.message;
+      toast.error(message);
+      console.error('Erro ao favoritar a task', error);
+    } finally {
+      setRequesting(false);
     }
   };
 

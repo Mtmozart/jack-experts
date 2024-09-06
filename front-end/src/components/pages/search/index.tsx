@@ -16,6 +16,8 @@ import { searchTask } from '../../../services/task.service';
 import { ITask } from '../../../interfaces/task';
 import { TaskCard } from '../../task-card/TaskCard';
 import { TaskSearchFavorite } from './util/TaskSearchFavoirte';
+import { toast } from 'react-toastify';
+import { toastMessage } from '../../../helpers/messages';
 
 export default function SearchTaskForm() {
   const [tasks, setTasks] = useState<ITask[]>([]);
@@ -30,11 +32,25 @@ export default function SearchTaskForm() {
     resolver: zodResolver(taskSchemaSearch),
     mode: 'onBlur',
   });
+  const [requesting, setRequesting] = useState<boolean>(false);
 
   async function onSubmit(data: TaskInfosSearchInterface) {
-    const dataApi = conversionToSearchTaskDataApi(data);
-    const tasks = await searchTask(dataApi, currentUser?.id);
-    setTasks(tasks);
+    if (requesting) {
+      toast.warn(toastMessage.REQUESTING);
+      return;
+    }
+    try {
+      const dataApi = conversionToSearchTaskDataApi(data);
+      const tasks = await searchTask(dataApi, currentUser?.id);
+      setTasks(tasks);
+      toast.success('Busca realizada com sucesso.');
+    } catch (error: any) {
+      const message = error.message;
+      toast.error(message);
+      console.error('Erro ao realizar a busca', error);
+    } finally {
+      setRequesting(false);
+    }
   }
 
   const FormField = FormFieldConstructor<TaskInfosSearchInterface>();

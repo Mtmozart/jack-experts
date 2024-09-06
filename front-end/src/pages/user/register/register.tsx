@@ -10,6 +10,10 @@ import { PersonalInfosInterface } from './step/PersonalInfos/utils/personalInfos
 import { conversionToCreateDataApi } from '../../../utils/dataConversion';
 import { userRegister } from '../../../services/user.service';
 import { useAuthProvider } from '../../../context/Auth';
+import { useState } from 'react';
+import { toast } from 'react-toastify';
+import { toastMessage } from '../../../helpers/messages';
+import { useNavigate } from 'react-router-dom';
 
 interface RegisterComponentsProps {}
 
@@ -23,11 +27,27 @@ export default function RegisterScreen(props: RegisterComponentsProps) {
     resolver: zodResolver(userSchema),
     mode: 'onBlur',
   });
-
+  const [requesting, setRequesting] = useState<boolean>(false);
   const { currentUser } = useAuthProvider();
+  const navigate = useNavigate();
+
   async function onSubmit(data: PersonalInfosInterface) {
-    const apiData = conversionToCreateDataApi(data);
-    userRegister(apiData);
+    if (requesting) {
+      toast.warn(toastMessage.REQUESTING);
+      return;
+    }
+    try {
+      const apiData = conversionToCreateDataApi(data);
+      userRegister(apiData);
+      toast.success('Usuário criado com sucesso');
+      navigate('/login');
+    } catch (error: any) {
+      const message = error.message;
+      toast.error(message);
+      console.error('Erro ao fazer login:', error);
+    } finally {
+      setRequesting(false);
+    }
   }
 
   const FormField = FormFieldConstructor<IRegister>();

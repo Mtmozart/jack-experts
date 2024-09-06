@@ -1,9 +1,9 @@
-HOST_DB=localhost
+HOST_DB=mysql-je
 PORT_DB=3306 
 USER_DB=root
-PASSWORD_DB=M.atheus2
+PASSWORD_DB=matheus123
 NAME_DB=jack-experts
-URL_DATABASE= 
+URL_DATABASE=mysql://root:matheus123@mysql-je:3306/jack-experts
 JWT_SECRET=np2HqswLXuAqJtTtVNETt6rij6O61y/dmX/rAzSsJc8=
 NODE_ENV=develop
 

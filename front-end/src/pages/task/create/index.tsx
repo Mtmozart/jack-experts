@@ -13,6 +13,10 @@ import { TextArea } from '../../../components/common/Text-area/TextArea';
 import { TaskInfosInterface } from './TaskInfo/taskInfos.zod';
 import { conversionToCreateTaskDataApi } from '../../../utils/dataConversionTask';
 import { createTask } from '../../../services/task.service';
+import { useState } from 'react';
+import { toast } from 'react-toastify';
+import { toastMessage } from '../../../helpers/messages';
+import { useNavigate } from 'react-router-dom';
 export function CreateScreen() {
   const {
     register,
@@ -24,11 +28,27 @@ export function CreateScreen() {
     mode: 'onBlur',
   });
   const { currentUser } = useAuthProvider();
-
+  const [requesting, setRequesting] = useState<boolean>(false);
+  const navigate = useNavigate();
   async function onSubmit(data: TaskInfosInterface) {
-    const dataApi = conversionToCreateTaskDataApi(data, currentUser?.id);
-    createTask(dataApi);
+    if (requesting) {
+      toast.warn(toastMessage.REQUESTING);
+      return;
+    }
+    try {
+      const dataApi = conversionToCreateTaskDataApi(data, currentUser?.id);
+      createTask(dataApi);
+      navigate('/dashboard');
+      toast.success('Task criada com sucesso');
+    } catch (error: any) {
+      const message = error.message;
+      toast.error(message);
+      console.error('Erro ao criar a task', error);
+    } finally {
+      setRequesting(false);
+    }
   }
+
   const FormField = FormFieldConstructor<ITaskCreate>();
   return (
     <section className={styles.container__task}>

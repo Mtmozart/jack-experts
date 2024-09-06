@@ -2,17 +2,34 @@ import { Link, useNavigate } from 'react-router-dom';
 import styles from './styles.module.scss';
 import { useAuthProvider } from '../../../context/Auth';
 import { deleteUser } from '../../../services/user.service';
+import { toast } from 'react-toastify';
+import { useState } from 'react';
+import { toastMessage } from '../../../helpers/messages';
 
 export function ProfileScreen() {
   const navigate = useNavigate();
   const { currentUser } = useAuthProvider();
+  const [requesting, setRequesting] = useState<boolean>(false);
 
   const handleClickDelete = async (
     event: React.MouseEvent<HTMLDivElement, MouseEvent>,
   ) => {
     event.preventDefault();
-    await deleteUser();
-    navigate('/');
+    if (requesting) {
+      toast.warn(toastMessage.REQUESTING);
+      return;
+    }
+    try {
+      await deleteUser();
+      navigate('/');
+      toast.success('Usuário deletado com sucesso.');
+    } catch (error: any) {
+      const message = error.message;
+      toast.error(message);
+      console.error('Erro ao deletar o usuário', error);
+    } finally {
+      setRequesting(false);
+    }
   };
   return (
     <section className={styles.profile__container}>

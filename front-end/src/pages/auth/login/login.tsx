@@ -9,6 +9,9 @@ import { conversionToLoginDataApi } from '../../../utils/dataConversion';
 import { login } from '../../../services/auth.service';
 import { setTokenToLocalStorage } from '../../../services/localStorage.service';
 import { useAuthProvider } from '../../../context/Auth';
+import { useState } from 'react';
+import { toastMessage } from '../../../helpers/messages';
+import { toast } from 'react-toastify';
 
 interface LoginComponentsProps {}
 
@@ -25,20 +28,30 @@ export default function LoginScreen(props: LoginComponentsProps) {
   const navigate = useNavigate();
   const { loginUser, currentUser } = useAuthProvider();
   const FormField = FormFieldConstructor<ILogin>();
+  const [requesting, setRequesting] = useState<boolean>(false);
 
   async function onSubmit(data: ILogin) {
+    if (requesting) {
+      toast.warn(toastMessage.REQUESTING);
+      return;
+    }
     try {
+      setRequesting(true);
       const dataApi = conversionToLoginDataApi(data);
       const response = await login(dataApi);
       const token = response.token;
-
       if (token) {
         setTokenToLocalStorage('token', token);
         loginUser();
         navigate('/');
+        toast.success('Login feito com sucesso');
       }
-    } catch (error) {
+    } catch (error: any) {
+      const message = error.message;
+      toast.error(message);
       console.error('Erro ao fazer login:', error);
+    } finally {
+      setRequesting(false);
     }
   }
   return (

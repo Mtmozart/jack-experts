@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { FieldError, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { userSchemaUpdate } from '../../../validators';
@@ -12,6 +12,7 @@ import { PersonalInfosUpdateInterface } from './step/PersonalInfos/utils/persona
 import { userUpdate } from '../../../services/user.service';
 import { useNavigate } from 'react-router-dom';
 import styles from './styles.module.scss';
+import { toast } from 'react-toastify';
 
 interface RegisterComponentsProps {}
 
@@ -29,7 +30,7 @@ export default function UpdateScreen(props: RegisterComponentsProps) {
     resolver: zodResolver(userSchemaUpdate),
     mode: 'onBlur',
   });
-
+  const [requesting, setRequesting] = useState<boolean>(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -53,10 +54,19 @@ export default function UpdateScreen(props: RegisterComponentsProps) {
   }, [currentUser, reset]);
 
   async function onSubmit(data: PersonalInfosUpdateInterface) {
-    const apiData = conversionToUpdateDataApi(data);
-    await userUpdate(apiData);
-    loginUser();
-    navigate('/profile');
+    try {
+      const apiData = conversionToUpdateDataApi(data);
+      await userUpdate(apiData);
+      loginUser();
+      navigate('/profile');
+      toast.success('Usuário atualizado com sucesso.');
+    } catch (error: any) {
+      const message = error.message;
+      toast.error(message);
+      console.error('Erro ao atualizar o usuário:', error);
+    } finally {
+      setRequesting(false);
+    }
   }
 
   const FormField = FormFieldConstructor<IUpdate>();

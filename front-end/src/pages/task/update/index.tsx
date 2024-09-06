@@ -16,10 +16,12 @@ import {
   findTask,
   updateTask,
 } from '../../../services/task.service';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { statusConversionToPortugueseRecord } from '../../../utils/statusConversionToPortugueseRecord';
 import { colorConversionToPortugueseByHex } from '../../../utils/colorConversionToPortugueseRecord';
+import { toast } from 'react-toastify';
+import { toastMessage } from '../../../helpers/messages';
 
 interface UpdateComponentsProps {}
 
@@ -37,10 +39,13 @@ export function UpdateTaskScreen(props: UpdateComponentsProps) {
   const { currentUser } = useAuthProvider();
   const { id } = useParams();
   const [taskData, setTaskData] = useState<ITask | null>(null);
+  const [requesting, setRequesting] = useState<boolean>(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (!id) {
-      console.log('Sem task.');
+      toast.warning('Sem task de referência');
+      navigate('/dashboard');
       return;
     }
     const fetchTask = async () => {
@@ -65,11 +70,25 @@ export function UpdateTaskScreen(props: UpdateComponentsProps) {
   }, [id, reset]);
 
   async function onSubmit(data: TaskInfosInterface) {
-    const dataApi = conversionToCreateTaskDataApi(data, currentUser?.id);
-    if (!taskData) {
-      console.log('Task não encontrada.');
-    } else {
-      await updateTask(taskData?.id, dataApi);
+    if (requesting) {
+      toast.warn(toastMessage.REQUESTING);
+      return;
+    }
+    try {
+      const dataApi = conversionToCreateTaskDataApi(data, currentUser?.id);
+      if (!taskData) {
+        toast.error('Task não encontrada');
+        navigate('/dashboard');
+      } else {
+        await updateTask(taskData?.id, dataApi);
+        toast.success('Task atualizada com sucesso');
+      }
+    } catch (error: any) {
+      const message = error.message;
+      toast.error(message);
+      console.error('Erro ao atualizar a task', error);
+    } finally {
+      setRequesting(false);
     }
   }
 

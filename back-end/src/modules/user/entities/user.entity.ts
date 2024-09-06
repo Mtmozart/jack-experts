@@ -9,7 +9,7 @@ import {
 } from 'typeorm';
 import { Address } from './address.entity';
 import { TypeUser } from '../enum/typeUserEnum';
-import { Task } from 'src/modules/task/entity/task.entity';
+import { Task } from '../../task/entity/task.entity';
 
 @Entity()
 @Index(['email', 'username'], { unique: true })

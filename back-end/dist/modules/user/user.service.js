@@ -16,18 +16,14 @@ exports.UserService = void 0;
 const common_1 = require("@nestjs/common");
 const user_entity_1 = require("./entities/user.entity");
 const typeorm_1 = require("@nestjs/typeorm");
-const address_entity_1 = require("./entities/address.entity");
 const typeorm_2 = require("typeorm");
 const jwt_1 = require("@nestjs/jwt");
-const sendEmailQueueService_service_1 = require("../mail/job/send-email-queue/sendEmailQueueService.service");
 const getToken_1 = require("./utils/getToken");
 const genSaltPassword_1 = require("./utils/genSaltPassword");
 let UserService = class UserService {
-    constructor(usersRepository, addressRepository, jwtService, sendEmailQueueService) {
+    constructor(usersRepository, jwtService) {
         this.usersRepository = usersRepository;
-        this.addressRepository = addressRepository;
         this.jwtService = jwtService;
-        this.sendEmailQueueService = sendEmailQueueService;
     }
     async validateUser(payload) {
         const user = await this.usersRepository.findOne({
@@ -146,10 +142,7 @@ exports.UserService = UserService;
 exports.UserService = UserService = __decorate([
     (0, common_1.Injectable)(),
     __param(0, (0, typeorm_1.InjectRepository)(user_entity_1.User)),
-    __param(1, (0, typeorm_1.InjectRepository)(address_entity_1.Address)),
     __metadata("design:paramtypes", [typeorm_2.Repository,
-        typeorm_2.Repository,
-        jwt_1.JwtService,
-        sendEmailQueueService_service_1.SendEmailQueueService])
+        jwt_1.JwtService])
 ], UserService);
 //# sourceMappingURL=user.service.js.map

@@ -7,12 +7,10 @@ import {
 } from '@nestjs/common';
 import { User } from './entities/user.entity';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Address } from './entities/address.entity';
 import { Repository } from 'typeorm';
 import { CreateUserClientDto } from './dto/request/createUserClientDto';
 import { JwtPayload } from '../auth/payload/jwt.payload';
 import { JwtService } from '@nestjs/jwt';
-import { SendEmailQueueService } from '../mail/job/send-email-queue/sendEmailQueueService.service';
 import { Request } from 'express';
 import { getToken } from './utils/getToken';
 import { UpdateUserDto } from './dto/request/updateUserDto';
@@ -23,10 +21,7 @@ export class UserService {
   constructor(
     @InjectRepository(User)
     private readonly usersRepository: Repository<User>,
-    @InjectRepository(Address)
-    private readonly addressRepository: Repository<Address>,
     private readonly jwtService: JwtService,
-    private readonly sendEmailQueueService: SendEmailQueueService,
   ) {}
 
   public async validateUser(payload: JwtPayload): Promise<User> {

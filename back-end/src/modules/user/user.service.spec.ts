@@ -115,7 +115,6 @@ describe('UserService', () => {
       complement: 'Apto 45',
     };
 
-    // Simular usuário existente pelo username
     mockUserRepository.findOne.mockResolvedValueOnce({
       id: 1,
       username: 'existingUser',

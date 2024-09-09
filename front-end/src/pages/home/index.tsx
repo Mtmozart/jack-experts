@@ -1,4 +1,6 @@
 import { Button } from '../../components/common/Button/Button';
+import { mockCardData } from '../../components/common/Card/mock';
+import CardScreen from '../../components/common/CardScreen';
 import styles from './styles.module.scss';
 
 export function HomeScreen() {
@@ -38,6 +40,10 @@ export function HomeScreen() {
           <img src="/sobre.png" alt="sobre_nos_tasks" />
         </div>
       </div>
+      <section className={styles.card__container__home}>
+        <h2>Lorem, ipsum dolor sit amet consectetur </h2>
+        <CardScreen cards={mockCardData} />
+      </section>
     </>
   );
 }

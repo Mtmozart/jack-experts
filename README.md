@@ -88,7 +88,7 @@ Acesse o aplicativo em `http://localhost:3000`.
 #### Via docker-compose:
 
 Utilize o comando: `docker-compose up --build`
-As portas são as mesmas, com exceção da phpadin que roda na `http://localhost:8000`
+As portas são as mesmas, com exceção da phpadmin que roda na `http://localhost:8000`
 
 Se tudo dé errado:
 

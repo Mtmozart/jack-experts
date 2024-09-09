@@ -54,6 +54,7 @@ Este projeto é uma aplicação fullstack que permite aos usuários gerenciar su
 - React Router (para navegação entre páginas)
 - Context API (para gerenciamento de estado global)
 - Axios (para consumir a API)
+- Zod para validação
 
 ## Instruções de Configuração
 
@@ -87,25 +88,40 @@ Acesse o aplicativo em `http://localhost:3000`.
 
 ## Decisões Tomadas
 
-- **NestJS**: Escolhido por sua simplicidade e flexibilidade, além da manipulação por módulos que o torna mais intuitivo e com inúmeras integrações.
+- **NestJS**: Escolhido por sua simplicidade e flexibilidade, além da manipulação por módulos que o torna mais intuitivo e com inúmeras integrações, dentre elas:
+  - **Autenticação**: O nest oferece uma plataforma de autenticação própria e segura, a qual utilizei com regras de user e client.
+  - **Bull**: Gerenciamento de filas, onde o sistema envia um e-mail adicionado a uma fila do redis, que, poderia ser substituído para um serviço próprio.
 - **Autenticação JWT**: Utilizado para proteger rotas e garantir que apenas usuários autenticados tenham acesso às tarefas.
-- **Banco de dados MySQL**: Escolhido pela sua robustez e TypeORM pela sua integração mais fácil com TypeScript.
+- **Banco de dados MySQL**: Escolhido pela sua robustez e TypeORM pela sua integração mais fácil com TypeScript, com a possibilidade de componentização, com o que ocorrera com a classe Address, que é componente de User.
 - **Banco de dados Redis**: Escolhido pela compatibilidade com o Bull do NestJS para gerenciamento de filas.
 - **Índices**: Índice composto utilizado em colunas `title` e `status` para otimizar consultas que filtram por essas colunas simultaneamente.
+- **React template**: Escolhido pela facilidade de entendimento e desenvolvimento.
+  - **Nota**: Em alguns momentos trabalhei com grid templates e outros com flex, variei bastante conforme a situação.
+- **Biblioteca do toast message**: Escolhido pela facilidade de entendimento e desenvolvimento para mensagens.
+- **Sass**: Escolhido pela flexibilidade na utilização do css.
+- **Docker**: Escolhido pela possibilidade de utilização em qualquer sistema, assim qualquer deve poderia baixar o projeto e rodar, se claro, colocar as variáveis de ambiente, sendo as seguintes imagens escolhidas.
+  - **Node latest**: Para poder rodar tanto o nest quanto o react;
+  - **Mysql**: Para poder rodar o banco de dados relacional;
+  - **Redis**: Para poder rodar a fila;
+  - **Phpmyadmin**: Para facilitar visualmente a interação com o banco de dados.
+  - **Criação de rede interna**: Para que não dependesse de comando externo para criação da rede
 
 ## Funcionalidades
 
 - **Cadastro e Login de Usuário**: Cadastro de usuários com validação básica de e-mail e senha, além da possibilidade de deletar e atualizar o usuário.
-- **Reset de Senha**: Usuários podem resetar sua senha. Um código é enviado para o e-mail com uma nova senha.
+- **Reset de Senha**: Usuários podem "reset" sua senha. Um código é enviado para o e-mail com uma nova senha.
 - **Autenticação JWT**: Login e logout utilizando JSON Web Tokens (JWT).
-- **CRUD de Tarefas**: Usuários autenticados podem criar, editar, mudar o status, favoritar e excluir tarefas.
+- **CRUD de Tarefas**: Usuários autenticados podem criar, editar, mudar o status, favoritar, alterar a cor do background, excluir tarefas.
 - **Sistema de Busca de Tarefas**: Usuários autenticados podem buscar suas tarefas por título, status e se é favorita, com índices para facilitar as buscas.
-- **Interface Responsiva**: A aplicação ajusta-se a diferentes tamanhos de tela, oferecendo uma boa experiência em dispositivos móveis.
+- **Interface Responsiva**: A aplicação ajusta-se a diferentes tamanhos de tela, oferecendo uma boa experiência em dispositivos móveis, divida em desktop, tablet e mobile.
 - **Usuário Admin**: A aplicação suporta um perfil de admin com regras específicas de autenticação, embora a lógica não tenha sido totalmente implementada.
 
 ## Considerações Extras
 
 - **Testes (Opcional)**: Foram adicionados testes unitários para o backend utilizando o jest e mocks, porém, não houve cobertura completa, focando apenas em serviços e controladores do usuário.
-- **Deploy (Opcional)**: A aplicação foi preparada para ser implantada na Amazon AWS, porém, não será mantida, com receio de que seja cobrado.
+- **Deploy (Opcional)**: Não fiz o deploy da aplicação, embora seja possível seu deploy na aws, desde que seja configurada o proxy reverso e o download da imagem.
 
 ## Contato
+
+LinkedIn: https://www.linkedin.com/in/matheus-mozart-borges;
+E-mail: bmozart.dev@gmail.com;

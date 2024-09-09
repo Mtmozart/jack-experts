@@ -11,7 +11,7 @@
   justify-content: center;
   align-items: center;
   color: $primary-color;
-  overflow-x: hidden;
+  box-sizing: border-box;
 
   @media (max-width: 600px) {
     height: auto;
@@ -69,18 +69,6 @@
 
 .container__search__form {
   height: auto;
-  width: 105rem;
-
-  @media (max-width: $desktop) {
-    width: 1000px;
-  }
-
-  @media (max-width: $tablet) {
-    width: 700px;
-  }
-
-  @media (max-width: $mobile) {
-    width: 400px;
-    justify-content: center;
-  }
+  width: 100%;
+  box-sizing: border-box; 
 }

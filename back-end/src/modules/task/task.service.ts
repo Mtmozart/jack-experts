@@ -7,6 +7,7 @@ import { UserService } from '../user/user.service';
 import { UpdateTaskDto } from './dto/request/updateTaskDto';
 import { SearchDto } from './dto/request/requestSearchDto';
 import { ChangeColorTaskDto } from './dto/request/changeColorTaskDto';
+import { TaskByStatusDto } from './dto/request/taskByStatusDto';
 
 @Injectable()
 export class TaskService {
@@ -118,6 +119,42 @@ export class TaskService {
       }
 
       return await queryBuilder.getMany();
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  public async findAllTasksByStatus(
+    userId: string,
+    data: TaskByStatusDto,
+  ): Promise<number> {
+    try {
+      return await this.taskRepository
+        .createQueryBuilder('t')
+        .leftJoinAndSelect('t.user', 'user')
+        .where('t.userId = :userId', { userId })
+        .andWhere('t.status = :status', { status: data.status })
+        .getCount();
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  public async findAllTasksByFavorite(userId: string): Promise<number> {
+    try {
+      return this.taskRepository.count({
+        where: { user: { id: userId }, favorite: true },
+      });
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  public async findAllTasksCount(userId: string): Promise<number> {
+    try {
+      return this.taskRepository.count({
+        where: { user: { id: userId } },
+      });
     } catch (error) {
       throw error;
     }

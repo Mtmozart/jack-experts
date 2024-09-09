@@ -2,8 +2,8 @@ import { Link } from 'react-router-dom';
 import { useAuthProvider } from '../../../context/Auth';
 import styles from './styles.module.scss';
 import { FaPlus } from 'react-icons/fa6';
-import { TaskCard } from '../../../components/task-card/TaskCard';
 import SearchTaskForm from '../../../components/pages/search';
+import TaskDataCountScreen from '../../../components/pages/count';
 
 export default function DashBoardScreen() {
   const { currentUser } = useAuthProvider();
@@ -14,6 +14,7 @@ export default function DashBoardScreen() {
         <section className={styles.task__container__task}>
           <section className={styles.task__container__task__content}>
             <h1>Dashboard</h1>
+            <TaskDataCountScreen id={currentUser.id} />
             <div className={styles.task__container__task__to__create}>
               <Link to="/create-task">
                 Adicionar task <FaPlus size={18} />

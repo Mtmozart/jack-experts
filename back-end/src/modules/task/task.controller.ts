@@ -20,6 +20,7 @@ import { UpdateTaskDto } from './dto/request/updateTaskDto';
 import { SearchDto } from './dto/request/requestSearchDto';
 import { ChangeColorTaskDto } from './dto/request/changeColorTaskDto';
 import DefaultResponseTaskDto from './dto/response/defaultResponseTaskDto';
+import { TaskByStatusDto } from './dto/request/taskByStatusDto';
 
 @ApiTags('task')
 @Controller('task')
@@ -76,5 +77,25 @@ export class TaskController {
       return tasks.map((t) => new DefaultResponseTaskDto(t));
     }
     return;
+  }
+
+  @Get('find-status/:userId')
+  @Roles('client')
+  async findAllByStatus(
+    @Param('userId') id: string,
+    @Query() status: TaskByStatusDto,
+  ) {
+    return await this.taskService.findAllTasksByStatus(id, status);
+  }
+  @Get('find-favorite/:userId')
+  @Roles('client')
+  async findAllByFavorite(@Param('userId') id: string) {
+    return await this.taskService.findAllTasksByFavorite(id);
+  }
+
+  @Get('find-all-count/:userId')
+  @Roles('client')
+  async findAllCount(@Param('userId') id: string) {
+    return this.taskService.findAllTasksCount(id);
   }
 }

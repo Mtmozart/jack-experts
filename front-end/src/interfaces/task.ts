@@ -58,3 +58,7 @@ export interface ITaskSearchApi {
   sortOrder?: string;
   sortBy?: string;
 }
+
+export interface ITaskSearchStatusCount {
+  status?: typeTaskStatusEnum;
+}

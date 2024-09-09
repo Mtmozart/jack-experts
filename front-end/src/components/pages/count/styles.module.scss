@@ -1,0 +1,68 @@
+@import '../../../styles/global.scss';
+.task__data__container {
+  width: 90%;
+  height: auto;
+  gap: 40px;
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  grid-template-columns: repeat(5, 1fr);
+
+  h4 {
+    font-size: $font-size-xlarge;
+    padding: 20px;
+  }
+
+  @media (max-width: $desktop) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  @media (max-width: $tablet) {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+
+    h4 {
+      font-size: $font-size-large;
+    }
+  }
+
+  @media (max-width: $mobile) {
+    grid-template-columns: 1fr;
+    gap: 10px;
+
+    h4 {
+      font-size: $font-size-medium;
+    }
+  }
+}
+
+.item__group__top {
+  grid-column: 1 / -1;
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+
+  @media (max-width: $mobile) {
+    flex-direction: column;
+  }
+}
+
+.item__group__bottom {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 10px;
+
+  @media (max-width: $desktop) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  @media (max-width: $tablet) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  @media (max-width: $mobile) {
+    grid-template-columns: 1fr;
+  }
+}

@@ -10,10 +10,11 @@ import { PersonalInfosInterface } from './step/PersonalInfos/utils/personalInfos
 import { conversionToCreateDataApi } from '../../../utils/dataConversion';
 import { userRegister } from '../../../services/user.service';
 import { useAuthProvider } from '../../../context/Auth';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 import { toastMessage } from '../../../helpers/messages';
 import { useNavigate } from 'react-router-dom';
+import { zipCodeMask } from '../../../utils/mask';
 
 interface RegisterComponentsProps {}
 
@@ -23,6 +24,9 @@ export default function RegisterScreen(props: RegisterComponentsProps) {
     handleSubmit,
     formState: { errors },
     setError,
+    setValue,
+    trigger,
+    watch,
   } = useForm<IRegister>({
     resolver: zodResolver(userSchema),
     mode: 'onBlur',
@@ -30,6 +34,11 @@ export default function RegisterScreen(props: RegisterComponentsProps) {
   const [requesting, setRequesting] = useState<boolean>(false);
   const { currentUser } = useAuthProvider();
   const navigate = useNavigate();
+
+  const cepMask: string = watch('cep');
+  useEffect(() => {
+    setValue('cep', zipCodeMask(cepMask));
+  }, [cepMask]);
 
   async function onSubmit(data: PersonalInfosInterface) {
     if (requesting) {
@@ -113,6 +122,18 @@ export default function RegisterScreen(props: RegisterComponentsProps) {
                   type: 'password',
                 }}
               />
+
+              <FormField
+                name="cep"
+                register={register}
+                setError={setError}
+                error={errors?.cep}
+                inputProps={{
+                  type: 'text',
+                  placeholder: 'xxxxx-xxx',
+                  maxLength: 9,
+                }}
+              />
               <FormField
                 name="logradouro"
                 register={register}
@@ -172,17 +193,6 @@ export default function RegisterScreen(props: RegisterComponentsProps) {
                 error={errors?.país}
                 inputProps={{
                   placeholder: 'Localidade',
-                  type: 'text',
-                }}
-              />
-
-              <FormField
-                name="cep"
-                register={register}
-                setError={setError}
-                error={errors?.cep}
-                inputProps={{
-                  placeholder: 'CEP',
                   type: 'text',
                 }}
               />

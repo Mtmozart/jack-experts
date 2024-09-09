@@ -9,7 +9,6 @@ import { redisConfig } from './database/redisSource';
 import { BullModule } from '@nestjs/bull';
 import { UserModule } from './modules/user/user.module';
 import { AuthModule } from './modules/auth/auth.module';
-import { DashboardModule } from './modules/dashboard/dashboard.module';
 @Module({
   imports: [
     BullModule.forRoot({
@@ -20,7 +19,6 @@ import { DashboardModule } from './modules/dashboard/dashboard.module';
     TaskModule,
     AuthModule,
     SendEmailModule,
-    DashboardModule,
   ],
   controllers: [AppController],
   providers: [AppService],

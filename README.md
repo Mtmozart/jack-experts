@@ -1,6 +1,4 @@
-Claro! Aqui está o README completo e corrigido:
 
----
 
 # Aplicação de Gerenciamento de Tarefas - Desafio Fullstack
 

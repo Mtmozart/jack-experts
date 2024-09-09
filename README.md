@@ -85,6 +85,16 @@ Este projeto é uma aplicação fullstack que permite aos usuários gerenciar su
 
 Acesse o aplicativo em `http://localhost:3000`.
 
+#### Via docker-compose:
+
+Utilize o comando: `docker-compose up --build`
+As portas são as mesmas, com exceção da phpadin que roda na `http://localhost:8000`
+
+Se tudo dé errado:
+
+Recomendo limpar o sistema docker antes com o comando: `docker system prune -a --volumes -f`, em seguida o comando: docker-compose up --build
+ATENÇÃO: ISSO APAGARÁ IMAGENS E VOLUMES do seu computador, É APENAS SE NÃO RODAR.
+
 ## Decisões Tomadas
 
 - **NestJS**: Escolhido por sua simplicidade e flexibilidade, além da manipulação por módulos que o torna mais intuitivo e com inúmeras integrações, dentre elas:

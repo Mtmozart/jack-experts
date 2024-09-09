@@ -64,7 +64,6 @@ Este projeto é uma aplicação fullstack que permite aos usuários gerenciar su
 - MySQL
 - Redis
 - Git
-- Ou, apenas baixar a imagem Docker
 
 ### Passos para rodar o projeto:
 
@@ -119,7 +118,7 @@ Acesse o aplicativo em `http://localhost:3000`.
 ## Considerações Extras
 
 - **Testes (Opcional)**: Foram adicionados testes unitários para o backend utilizando o jest e mocks, porém, não houve cobertura completa, focando apenas em serviços e controladores do usuário.
-- **Deploy (Opcional)**: Não fiz o deploy da aplicação, embora seja possível seu deploy na aws, desde que seja configurada o proxy reverso e o download da imagem.
+- **Deploy (Opcional)**: Não fiz o deploy da aplicação.
 
 ## Contato
 

@@ -16,12 +16,14 @@ import { getToken } from './utils/getToken';
 import { UpdateUserDto } from './dto/request/updateUserDto';
 import { CreateUserAdminDto } from './dto/request/createUserAdminDto';
 import genSaltPassword from './utils/genSaltPassword';
+import { SendEmailQueueService } from '../mail/job/send-email-queue/sendEmailQueueService.service';
 @Injectable()
 export class UserService {
   constructor(
     @InjectRepository(User)
     private readonly usersRepository: Repository<User>,
     private readonly jwtService: JwtService,
+    private readonly sendEmailQueueService: SendEmailQueueService,
   ) {}
 
   public async validateUser(payload: JwtPayload): Promise<User> {
@@ -66,6 +68,11 @@ export class UserService {
         throw new BadRequestException('Tipo de usuário inválido');
       }
       await this.usersRepository.save(user);
+
+      await this.sendEmailQueueService.execute({
+        name: user.name,
+        email: user.email,
+      });
       return { message: 'Usuário criado com sucesso' };
     } catch (error) {
       throw error;

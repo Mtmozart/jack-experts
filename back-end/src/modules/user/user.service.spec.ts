@@ -11,12 +11,15 @@ import { ConflictException, NotFoundException } from '@nestjs/common';
 import { JwtPayload } from '../auth/payload/jwt.payload';
 import genSaltPassword from './utils/genSaltPassword';
 import { UpdateUserDto } from './dto/request/updateUserDto';
+import { SendEmailQueue } from '../mail/types/sendEmailQueue.types';
+import { SendEmailQueueService } from '../mail/job/send-email-queue/sendEmailQueueService.service';
 
 describe('UserService', () => {
   let service: UserService;
   let userRepository: Repository<User>;
   let taskRepository: Repository<Task>;
   let jwtService: JwtService;
+  let sendEmailQueueService: SendEmailQueueService;
 
   const mockUserRepository = {
     findOne: jest.fn(),
@@ -30,8 +33,10 @@ describe('UserService', () => {
   };
 
   const mockJwtService = {
-    sign: jest.fn().mockReturnValue('mockToken'),
-    verify: jest.fn(),
+    send: jest.fn(),
+  };
+  const mockSendEmailQueueService = {
+    execute: jest.fn().mockResolvedValue(undefined),
   };
 
   jest.mock('./utils/genSaltPassword');
@@ -43,6 +48,7 @@ describe('UserService', () => {
         { provide: getRepositoryToken(User), useValue: mockUserRepository },
         { provide: getRepositoryToken(Task), useValue: mockTaskRepository },
         { provide: JwtService, useValue: mockJwtService },
+        { provide: SendEmailQueueService, useValue: mockSendEmailQueueService },
       ],
     }).compile();
 
@@ -50,31 +56,13 @@ describe('UserService', () => {
     userRepository = module.get<Repository<User>>(getRepositoryToken(User));
     taskRepository = module.get<Repository<Task>>(getRepositoryToken(Task));
     jwtService = module.get<JwtService>(JwtService);
+    sendEmailQueueService = module.get<SendEmailQueueService>(
+      SendEmailQueueService,
+    );
   });
 
   it('should be defined', () => {
     expect(service).toBeDefined();
-  });
-
-  it('should be create client', async () => {
-    const clientDto = new CreateUserClientDto();
-    clientDto.name = 'John Doe';
-    clientDto.email = 'johndoe@example.com';
-    clientDto.username = 'johndoe123';
-    clientDto.password = 'securePassword123';
-    clientDto.address = {
-      cep: '12345-678',
-      state: 'SP',
-      country: 'Brasil',
-      city: 'São Paulo',
-      neighborhood: 'Centro',
-      street: 'Rua das Flores',
-      number: '123',
-      complement: 'Apto 45',
-    };
-
-    const result = await service.create(clientDto);
-    expect(result).toEqual({ message: 'Usuário criado com sucesso' });
   });
 
   it('should be create client', async () => {

@@ -6,7 +6,7 @@ export const EnvConfig = {
     HOST_DB: process.env.HOST_DB || 'localhost',
     PORT_DB: +process.env.PORT_DB || 3306,
     USER_DB: process.env.USER_DB || 'root',
-    PASSWORD_DB: process.env.PASSWORD_DB || 'matheus123',
+    PASSWORD_DB: process.env.PASSWORD_DB || '',
     NAME_DB: process.env.NAME_DB || 'jack-experts',
     URL: process.env.URL_DATABASE || '',
   },

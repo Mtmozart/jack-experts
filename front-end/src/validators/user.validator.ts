@@ -16,9 +16,7 @@ export const userSchema = z.object({
   confirmação: z
     .string({ required_error: 'O campo confirmação é obrigatório.' })
     .min(1, 'A confirmação da senha é obrigatório'),
-  cep: z
-    .string({ required_error: 'O campo CEP é obrigatório.' })
-    .length(8, 'CEP deve ter exatamente 8 caracteres'),
+  cep: z.string({ required_error: 'O campo CEP é obrigatório.' }),
   estado: z
     .string({ required_error: 'O campo Estado é obrigatório.' })
     .min(1, 'O campo Estado é obrigatório.'),

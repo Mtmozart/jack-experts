@@ -32,7 +32,7 @@ services:
     depends_on:
       - mysql-je
 
-  redis:
+  redis-je:
     image: redis
     container_name: redis-je
     networks:
@@ -74,7 +74,7 @@ services:
       - "8080:8080"
     depends_on:
       - mysql-je
-      - redis
+      - redis-je
     environment:
       NODE_ENV: ${NODE_ENV}
       URL_DATABASE: ${URL_DATABASE}
